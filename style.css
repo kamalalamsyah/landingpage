@@ -1160,18 +1160,6 @@ section[id] {
 }
 
 /* =========================
-   LAYAR BESAR
-========================= */
-
-@media (min-width: 768px) {
-  .section,
-  .order-section {
-    padding-left: max(5%, calc((100% - 1350px)/2));
-    padding-right: max(5%, calc((100% - 1350px)/2));
-  }
-}
-
-/* =========================
    TABLET
 ========================= */
 /* =========================
