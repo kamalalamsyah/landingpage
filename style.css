@@ -1174,34 +1174,6 @@ section[id] {
 /* =========================
    TABLET
 ========================= */
-
-@media (max-width: 1100px) {
-  .navigation {
-    gap: 11px;
-  }
-
-  .navigation a {
-    font-size: 11px;
-  }
-
-  .menu-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .order-section {
-    grid-template-columns: .8fr 1.2fr;
-  }
-
-  .order-summary {
-    grid-column: 2;
-    position: static;
-  }
-}
-
-/* =========================
-   HP / MOBILE
-========================= */
-
 /* =========================
    HP / MOBILE
 ========================= */
