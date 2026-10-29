@@ -1,37 +1,695 @@
-/* ROTI'O LANDING PAGE */
-:root{--brown:#5b260e;--brown-light:#813d1b;--cream:#fff0dc;--orange:#ffd95f;--text:#382015;--muted:#806d60;--border:#eadbcd;--shadow:0 12px 35px rgba(91,38,14,.10)}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{font-family:'Poppins',sans-serif;color:var(--text);background:#fffaf5;line-height:1.6}
-button,input,select,textarea{font:inherit}button{cursor:pointer}a{text-decoration:none;color:inherit}img{max-width:100%;display:block}.hidden{display:none!important}
-.header{min-height:78px;padding:12px 5%;display:flex;align-items:center;justify-content:space-between;gap:20px;position:sticky;top:0;z-index:100;color:white;background:var(--brown);box-shadow:0 4px 15px #00000012}
-.brand,.footer-brand{display:flex;align-items:center;gap:11px}.brand-logo{width:48px;height:48px;flex-shrink:0;object-fit:cover;object-position:center;border-radius:50%;background:#ffdc00;border:2px solid #fff4b8}
-.brand span,.footer-brand span:last-child{display:flex;flex-direction:column;line-height:1.4}.brand b{font-family:'Playfair Display',serif;font-size:25px;color:white}.brand small{color:#f0d9c5;font-size:10px}
-.navigation{display:flex;align-items:center;gap:18px}.navigation a{font-size:12px;font-weight:600;color:#fff5e9;transition:color .2s}.navigation a:hover{color:var(--orange)}
-.header-cart{background:transparent;color:white;border:1px solid #ffffff55;border-radius:30px;padding:10px 14px;white-space:nowrap}.header-cart span,.floating-cart span{background:#f04b32;color:white;border-radius:20px;padding:2px 7px;font-size:11px}
-.menu-toggle{display:none;background:transparent;color:white;border:0;font-size:25px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:12px;border:2px solid transparent;font-size:13px;font-weight:700;transition:.25s}.btn:hover{transform:translateY(-2px)}.btn-primary{background:var(--brown);color:white}.btn-primary:hover{background:var(--brown-light)}.btn-outline{color:var(--brown);background:transparent;border-color:var(--brown)}.btn-outline:hover{background:var(--cream)}.full-width{width:100%}
-.hero{min-height:500px;padding:65px 7%;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:35px;overflow:hidden;background:radial-gradient(circle at 85% 20%,#f8dfb8,transparent 30%),linear-gradient(135deg,#fffaf5,#fff0dc)}
-.eyebrow{color:#bd6335;font-size:11px;font-weight:800;letter-spacing:2px}.hero h1{margin:15px 0;font-family:'Playfair Display',serif;font-size:clamp(36px,4.5vw,60px);line-height:1.15}.hero h1 span{color:var(--brown-light)}.hero-content>p{color:var(--muted);font-size:14px;max-width:490px;margin-bottom:25px}.hero-actions{display:flex;gap:12px;flex-wrap:wrap}.hero-stats{display:flex;gap:22px;flex-wrap:wrap;margin-top:30px;font-size:12px}
-.hero-visual{min-height:320px;position:relative;display:flex;align-items:center;justify-content:center}.hero-circle{width:min(320px,80%);aspect-ratio:1;background:linear-gradient(145deg,#f8dda9,#e9a04b);border-radius:50%;display:grid;place-items:center;box-shadow:var(--shadow)}
-.hero-logo-mark{width:74%;height:74%;border-radius:50%;background:#ffdc00;display:flex;align-items:center;justify-content:center;flex-direction:column;color:#382015;box-shadow:0 8px 20px #5b260e18}.hero-logo-emoji{font-size:64px;line-height:1.15}.hero-logo-mark strong{font-family:'Playfair Display',serif;font-size:34px;font-style:italic}.hero-logo-mark small{font-size:9px;font-weight:700}
-.hero-food{position:absolute;display:grid;place-items:center;width:60px;height:60px;border-radius:18px;background:white;box-shadow:var(--shadow);font-size:30px}.food-one{top:25px;left:5%}.food-two{bottom:25px;right:5%}.hero-sticker{position:absolute;top:10%;right:0;padding:13px;background:var(--brown);color:white;border-radius:50%;text-align:center;font-size:11px;font-weight:800;transform:rotate(10deg)}
-.section{padding:65px 5%}.section-heading{display:flex;align-items:end;justify-content:space-between;gap:25px;margin-bottom:28px}.section-heading h2,.order-intro h2{font-family:'Playfair Display',serif;font-size:clamp(29px,3vw,40px);line-height:1.25;margin-top:8px}.section-heading>p{max-width:390px;color:var(--muted);font-size:12px}
-.category-nav{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}.category{flex:1;min-width:125px;padding:12px 15px;border:1px solid var(--border);border-radius:13px;background:#fff8f0;color:var(--brown);font-size:12px;font-weight:700;transition:.2s}.category:hover,.category.active{background:var(--orange);border-color:var(--orange);color:#351807}
-.menu-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}.menu-card{overflow:hidden;background:white;border:1px solid var(--border);border-radius:18px;transition:transform .25s,box-shadow .25s;animation:fadeUp .35s ease}.menu-card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
-.menu-image{height:200px;position:relative;overflow:hidden;display:grid;place-items:center;background:var(--cream)}.menu-image img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .35s}.menu-card:hover .menu-image img{transform:scale(1.04)}
-.image-placeholder{display:none;position:absolute;inset:0;place-items:center;background:var(--cream);font-size:55px}.menu-info{position:relative;padding:16px}.menu-badge{display:inline-block;background:#fff0dc;color:var(--brown);padding:3px 9px;border-radius:20px;font-size:10px;font-weight:700;margin-bottom:8px}.menu-info h3{font-size:15px;margin-bottom:5px}.menu-info p{min-height:38px;margin-bottom:15px;color:var(--muted);font-size:11px}.menu-card-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px}.menu-price{color:var(--brown);font-size:14px;font-weight:800}.add-cart{flex-shrink:0;width:36px;height:36px;border:0;border-radius:11px;background:var(--brown);color:white;font-size:23px;transition:.2s}.add-cart:hover{background:var(--orange);color:var(--brown)}.empty-menu{text-align:center;grid-column:1/-1;padding:35px;color:var(--muted)}
-.package-section{background:#fff3e3}.preset-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}.preset-card{overflow:hidden;background:white;border:1px solid var(--border);border-radius:19px;transition:.25s}.preset-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}.preset-image.emoji-only{height:170px;display:grid;place-items:center;background:#fff0dc;overflow:hidden}.preset-image.emoji-only span{display:grid;place-items:center;width:100%;height:100%;font-size:76px;transition:transform .25s}.preset-card:hover .preset-image.emoji-only span{transform:scale(1.12) rotate(-4deg)}.preset-content{padding:0 20px 22px}.preset-content h3{font-size:17px;margin:2px 0 7px}.preset-content p{color:var(--muted);font-size:12px;min-height:38px}.preset-price{margin:15px 0;color:var(--brown);font-size:20px;font-weight:800}.preset-content .btn{width:100%}.disclaimer{margin-top:20px;color:var(--muted);font-size:11px}
-.review-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}.review-card{padding:23px;border:1px solid var(--border);border-radius:18px;background:white}.review-person{display:flex;align-items:center;gap:12px}.avatar{width:43px;height:43px;flex-shrink:0;display:grid;place-items:center;border-radius:50%;background:var(--cream);color:var(--brown);font-weight:800}.review-person div:last-child{display:flex;flex-direction:column}.review-person b{font-size:12px}.review-person small{color:var(--muted);font-size:10px}.stars{margin:15px 0 8px;color:#e6a12e;letter-spacing:3px}.review-card>p{font-size:12px;color:var(--muted)}
-.faq-section{background:#fff5e9}.faq-list{max-width:850px;margin:0 auto}.faq-list details{padding:17px 20px;margin-bottom:12px;background:white;border:1px solid var(--border);border-radius:13px}.faq-list summary{cursor:pointer;font-size:13px;font-weight:700}.faq-list details p{padding-top:12px;font-size:12px;color:var(--muted)}
-.order-section{padding:65px 5%;display:grid;grid-template-columns:.8fr 1fr .85fr;align-items:start;gap:22px;background:linear-gradient(140deg,#5b260e,#813d1b);color:white}.order-intro{padding:12px 0}.order-intro .eyebrow{color:#f4c47e}.order-intro h2{margin:14px 0;font-size:36px}.order-intro p{font-size:12px;color:#f1dcd0}.order-decoration{margin-top:25px;font-size:35px}
-.order-form,.order-summary{padding:22px;background:white;color:var(--text);border-radius:18px;box-shadow:var(--shadow)}.order-form h3,.order-summary h3{font-size:18px;margin-bottom:16px}.order-form label{display:block;margin:12px 0 6px;font-size:12px;font-weight:700}.order-form input:not([type=checkbox]),.order-form select,.order-form textarea{width:100%;padding:11px 12px;border:1px solid var(--border);border-radius:9px;outline:none;background:#fffdfb;color:var(--text);font-size:12px}.order-form input:focus,.order-form select:focus,.order-form textarea:focus{border-color:var(--brown-light)}.order-form textarea{min-height:75px;resize:vertical}.order-form .terms{display:flex;align-items:start;gap:8px;font-weight:500}.terms input{margin-top:5px}.submit-order{width:100%;margin-top:17px}.form-note{margin-top:10px;color:var(--muted);text-align:center;font-size:10px}.order-summary{position:sticky;top:95px}.summary-item{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);font-size:11px}.summary-item small{display:block;margin-top:4px;color:var(--muted)}.empty-text{padding:15px 0;color:var(--muted);font-size:12px}.summary-total{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:14px;padding-top:15px;border-top:1px solid var(--border)}.summary-total strong{color:var(--brown);font-size:18px}.order-summary .btn{margin-top:16px}
-.location-section{padding:60px 5%;background:#fffaf5}.location-container{display:grid;grid-template-columns:.8fr 1.2fr;gap:30px;align-items:center}.location-info h2{margin:10px 0 15px;color:var(--brown);font-family:'Playfair Display',serif;font-size:clamp(28px,3vw,40px)}.location-info p{margin-bottom:20px;color:var(--muted);font-size:13px}.location-map{width:100%;height:320px;overflow:hidden;border:1px solid var(--border);border-radius:18px;background:var(--cream)}.location-map iframe{width:100%;height:100%;border:0}
-.footer{padding:35px 5% 18px;background:#301509;color:white}.footer-brand{display:inline-flex}.footer-logo{width:44px;height:44px;object-fit:cover;border-radius:50%;border:2px solid #ffdc00;background:#ffdc00}.footer-brand b{color:white;font-size:20px}.footer-brand small{color:#d5bcae;font-size:10px}.footer-main>p{margin:15px 0;color:#d5bcae;font-size:12px}.footer-links{display:flex;flex-wrap:wrap;gap:18px;font-size:12px}.footer-links a:hover,.footer-bottom a:hover{color:var(--orange)}.footer-bottom{display:flex;justify-content:space-between;gap:15px;margin-top:25px;padding-top:17px;border-top:1px solid #604333;color:#d5bcae;font-size:11px}
-.cart-backdrop{position:fixed;inset:0;z-index:199;background:rgba(26,13,7,.48);opacity:0;visibility:hidden;transition:.25s}.cart-backdrop.show{opacity:1;visibility:visible}.cart-panel{position:fixed;z-index:200;top:0;right:0;width:min(420px,100%);height:100vh;height:100dvh;display:flex;flex-direction:column;padding:23px;background:#fffaf5;box-shadow:-10px 0 35px #00000020;transform:translateX(105%);transition:transform .3s ease}.cart-panel.open{transform:translateX(0)}.cart-header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:18px;border-bottom:1px solid var(--border)}.cart-header h2{font-family:'Playfair Display',serif;font-size:28px}.close-cart{width:40px;height:40px;border:0;border-radius:10px;background:var(--cream);color:var(--brown);font-size:20px}.cart-items{flex:1;overflow-y:auto;padding:10px 0}.cart-item{display:grid;grid-template-columns:1fr auto;gap:12px;padding:15px 0;border-bottom:1px solid var(--border)}.cart-item h4{font-size:13px}.cart-item small{color:var(--muted);font-size:11px}.cart-item-price{color:var(--brown);text-align:right;font-size:12px;font-weight:800}.quantity-control{display:flex;align-items:center;gap:10px;margin-top:9px}.quantity-control button{width:27px;height:27px;border:1px solid var(--border);border-radius:7px;background:white;color:var(--brown);font-weight:800}.quantity-control span{font-size:12px;font-weight:700}.cart-bottom{padding-top:15px;border-top:1px solid var(--border)}.clear-cart{display:block;margin:13px auto 0;border:0;background:transparent;color:#a03a28;font-size:12px;font-weight:600}
-.floating-cart{position:fixed;z-index:150;right:24px;bottom:24px;display:flex;align-items:center;gap:9px;padding:14px 18px;border:0;border-radius:50px;background:var(--orange);color:var(--brown);font-size:20px;box-shadow:0 8px 25px #5b260e30;transition:transform .2s}.floating-cart:hover{transform:translateY(-3px)}.floating-cart.bump{animation:bump .35s ease}
-.toast{position:fixed;z-index:300;bottom:25px;left:50%;width:max-content;max-width:calc(100% - 30px);padding:12px 18px;border-radius:12px;background:#301509;color:white;text-align:center;font-size:12px;opacity:0;visibility:hidden;transform:translate(-50%,20px);transition:.25s}.toast.show{opacity:1;visibility:visible;transform:translate(-50%,0)}
-@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}@keyframes bump{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
-@media(max-width:1100px){.header{padding:12px 3%;gap:12px}.navigation{gap:10px}.navigation a{font-size:10px}.menu-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.order-section{grid-template-columns:1fr 1fr}.order-intro{grid-column:1/-1}.order-summary{position:static}}
-@media(max-width:760px){html{scroll-padding-top:75px}.header{min-height:68px;padding:10px 4%;gap:9px}.brand{gap:7px}.brand-logo{width:39px;height:39px}.brand b{font-size:19px}.brand small{font-size:9px}.menu-toggle{display:block;margin-left:auto}.navigation{display:none;position:absolute;top:100%;left:0;right:0;padding:14px 5%;flex-direction:column;align-items:stretch;gap:0;background:var(--brown)}.navigation.open{display:flex}.navigation a{padding:12px 0;border-bottom:1px solid #ffffff25;font-size:13px}.header-cart{padding:9px 10px;font-size:12px}.hero{padding:42px 5% 30px;grid-template-columns:1fr;gap:20px}.hero h1{font-size:38px}.hero-content>p{font-size:13px}.hero-visual{min-height:255px}.hero-circle{width:240px}.hero-logo-emoji{font-size:48px}.hero-logo-mark strong{font-size:28px}.hero-food{width:50px;height:50px;font-size:26px}.hero-sticker{font-size:9px;padding:10px}.section{padding:45px 5%}.section-heading{display:block}.section-heading>p{margin-top:10px}.category-nav{gap:8px}.category{flex:1 1 40%;min-width:0;padding:11px 7px;font-size:11px}.menu-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.menu-image{height:150px}.menu-info{padding:12px}.menu-info h3{font-size:13px}.menu-info p{font-size:10px;min-height:36px}.menu-price{font-size:11px}.add-cart{width:32px;height:32px}.preset-grid,.review-grid{grid-template-columns:1fr;gap:16px}.preset-image.emoji-only{height:150px}.order-section{grid-template-columns:1fr;gap:20px;padding:45px 5%}.order-intro{grid-column:auto}.order-intro h2{font-size:32px}.order-form,.order-summary{padding:18px}.order-summary{position:static}.location-container{grid-template-columns:1fr;gap:20px}.location-map{height:270px}.footer{padding:30px 5% 18px}.footer-links{gap:12px 17px}.footer-bottom{flex-direction:column;gap:8px}.floating-cart{right:14px;bottom:14px;padding:12px 15px}.cart-panel{padding:19px}}
-@media(max-width:370px){.menu-grid{grid-template-columns:1fr}.menu-image{height:220px}.hero h1{font-size:32px}.hero-actions .btn{width:100%}}
+/* ROTI'O - SCRIPT.JS */
+
+const NOMOR_WA = "628xxxxxxxxxx"; // Ganti dengan nomor WhatsApp tujuan
+
+const formatRupiah = angka =>
+  new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+    maximumFractionDigits: 0
+  }).format(angka);
+
+// DATA MENU
+const daftarMenu = [
+  {
+    id: "roti-original",
+    nama: "Roti Original",
+    kategori: "Roti",
+    harga: 12000,
+    foto: "ori.jpg",
+    emoji: "🥐",
+    deskripsi: "Roti kopi dengan aroma khas."
+  },
+  {
+    id: "roti-cokelat",
+    nama: "Roti Cokelat",
+    kategori: "Roti",
+    harga: 14000,
+    foto: "kue.jpg",
+    emoji: "🍫",
+    deskripsi: "Roti dengan rasa cokelat."
+  },
+  {
+    id: "croissant",
+    nama: "Croissant",
+    kategori: "Pastry",
+    harga: 18000,
+    foto: "crombo.jpg",
+    emoji: "🥐",
+    deskripsi: "Pastry renyah dan lembut."
+  },
+  {
+    id: "croissant-martabak",
+    nama: "Croissant Martabak",
+    kategori: "Pastry",
+    harga: 20000,
+    foto: "martabak.jpg",
+    emoji: "🥮",
+    deskripsi: "Pastry dengan rasa martabak."
+  },
+  {
+    id: "cone",
+    nama: "Es Krim Cone",
+    kategori: "Es Krim",
+    harga: 12000,
+    foto: "cone.jpg",
+    emoji: "🍦",
+    deskripsi: "Es krim cone yang menyegarkan."
+  },
+  {
+    id: "latte",
+    nama: "Latte",
+    kategori: "Minuman",
+    harga: 18000,
+    foto: "latte.jpg",
+    emoji: "☕",
+    deskripsi: "Kopi susu dengan rasa lembut."
+  },
+  {
+    id: "boba",
+    nama: "Es Boba",
+    kategori: "Minuman",
+    harga: 18000,
+    foto: "esboba.jpg",
+    emoji: "🥤",
+    deskripsi: "Minuman segar untuk menemani harimu."
+  },
+  {
+    id: "gula-merah",
+    nama: "Gula Merah",
+    kategori: "Minuman",
+    harga: 18000,
+    foto: "gulamerah.jpg",
+    emoji: "🧋",
+    deskripsi: "Minuman dengan rasa gula merah."
+  },
+  {
+    id: "leci",
+    nama: "Leci",
+    kategori: "Minuman",
+    harga: 17000,
+    foto: "leci.jpg",
+    emoji: "🥤",
+    deskripsi: "Minuman dengan rasa leci."
+  },
+  {
+    id: "roti-kopi",
+    nama: "Roti Kopi",
+    kategori: "Roti",
+    harga: 12000,
+    foto: "roties.jpg",
+    emoji: "🍞",
+    deskripsi: "Roti dengan aroma kopi."
+  }
+];
+
+// DATA PAKET HEMAT
+// Paket menggunakan emoji, bukan foto.
+const daftarPaket = [
+  {
+    id: "paket-1",
+    nama: "Paket Santai",
+    harga: 25000,
+    emoji: "☕",
+    deskripsi: "Roti Original + Latte",
+    isi: [
+      { nama: "Roti Original", jumlah: 1 },
+      { nama: "Latte", jumlah: 1 }
+    ]
+  },
+  {
+    id: "paket-2",
+    nama: "Paket Berdua",
+    harga: 42000,
+    emoji: "🥐",
+    deskripsi: "2 Roti Original + 2 Latte",
+    isi: [
+      { nama: "Roti Original", jumlah: 2 },
+      { nama: "Latte", jumlah: 2 }
+    ]
+  },
+  {
+    id: "paket-3",
+    nama: "Paket Komplit",
+    harga: 35000,
+    emoji: "🍞",
+    deskripsi: "Roti Original + Latte + Es Krim",
+    isi: [
+      { nama: "Roti Original", jumlah: 1 },
+      { nama: "Latte", jumlah: 1 },
+      { nama: "Es Krim Cone", jumlah: 1 }
+    ]
+  }
+];
+
+let keranjang = [];
+let toastTimer;
+
+// ELEMEN HTML
+const menuGrid = document.getElementById("menuGrid");
+const presetGrid = document.getElementById("presetGrid");
+const cartPanel = document.getElementById("cartPanel");
+const cartBackdrop = document.getElementById("cartBackdrop");
+const cartItems = document.getElementById("cartItems");
+const cartTotal = document.getElementById("cartTotal");
+const orderSummaryItems = document.getElementById("orderSummaryItems");
+const orderTotal = document.getElementById("orderTotal");
+const toast = document.getElementById("toast");
+
+// NOTIFIKASI
+function tampilkanToast(pesan) {
+  if (!toast) return;
+
+  toast.textContent = pesan;
+  toast.classList.add("show");
+
+  clearTimeout(toastTimer);
+
+  toastTimer = setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2500);
+}
+
+// FOTO MENU
+function buatFotoMenu(foto, nama, emoji) {
+  return `
+    <div class="menu-image">
+      <img
+        src="./${foto}"
+        alt="${nama}"
+        loading="lazy"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+      >
+      <span class="image-placeholder" aria-hidden="true">${emoji}</span>
+    </div>
+  `;
+}
+
+// MENAMPILKAN MENU
+function tampilkanMenu(kategori = "Semua") {
+  if (!menuGrid) return;
+
+  const menuTerpilih = daftarMenu.filter(menu =>
+    kategori === "Semua" || menu.kategori === kategori
+  );
+
+  menuGrid.innerHTML = "";
+
+  if (menuTerpilih.length === 0) {
+    menuGrid.innerHTML = "<p>Menu belum tersedia.</p>";
+    return;
+  }
+
+  menuTerpilih.forEach(menu => {
+    const kartu = document.createElement("article");
+    kartu.className = "menu-card";
+
+    kartu.innerHTML = `
+      ${buatFotoMenu(menu.foto, menu.nama, menu.emoji)}
+
+      <div class="menu-info">
+        <span class="menu-badge">${menu.kategori}</span>
+        <h3>${menu.nama}</h3>
+        <p>${menu.deskripsi}</p>
+
+        <div class="menu-card-bottom">
+          <span class="menu-price">${formatRupiah(menu.harga)}</span>
+
+          <button
+            class="add-cart"
+            data-id="${menu.id}"
+            aria-label="Tambah ${menu.nama}"
+          >+</button>
+        </div>
+      </div>
+    `;
+
+    menuGrid.appendChild(kartu);
+  });
+}
+
+// FILTER KATEGORI MENU
+document.querySelectorAll(".category").forEach(button => {
+  button.addEventListener("click", () => {
+    document.querySelectorAll(".category").forEach(item => {
+      item.classList.remove("active");
+    });
+
+    button.classList.add("active");
+    tampilkanMenu(button.dataset.category);
+  });
+});
+
+// MENAMPILKAN PAKET HEMAT
+function tampilkanPaket() {
+  if (!presetGrid) return;
+
+  presetGrid.innerHTML = "";
+
+  daftarPaket.forEach(paket => {
+    const kartu = document.createElement("article");
+    kartu.className = "preset-card";
+
+    kartu.innerHTML = `
+      <div class="preset-image emoji-only">
+        <span>${paket.emoji}</span>
+      </div>
+
+      <div class="preset-content">
+        <h3>${paket.nama}</h3>
+        <p>${paket.deskripsi}</p>
+
+        <div class="preset-price">
+          ${formatRupiah(paket.harga)}
+        </div>
+
+        <button
+          class="btn btn-primary"
+          data-paket="${paket.id}"
+        >
+          + Tambah Paket
+        </button>
+      </div>
+    `;
+
+    presetGrid.appendChild(kartu);
+  });
+}
+
+// TAMBAH MENU KE KERANJANG
+function tambahMenu(id) {
+  const menu = daftarMenu.find(item => item.id === id);
+  if (!menu) return;
+
+  const itemAda = keranjang.find(item =>
+    item.id === id && item.tipe === "menu"
+  );
+
+  if (itemAda) {
+    itemAda.jumlah++;
+  } else {
+    keranjang.push({
+      ...menu,
+      tipe: "menu",
+      jumlah: 1
+    });
+  }
+
+  perbaruiKeranjang();
+  animasiKeranjang();
+  tampilkanToast(`${menu.nama} ditambahkan ke keranjang.`);
+}
+
+// TAMBAH PAKET KE KERANJANG
+function tambahPaket(id) {
+  const paket = daftarPaket.find(item => item.id === id);
+  if (!paket) return;
+
+  const itemAda = keranjang.find(item =>
+    item.id === id && item.tipe === "paket"
+  );
+
+  if (itemAda) {
+    itemAda.jumlah++;
+  } else {
+    keranjang.push({
+      ...paket,
+      tipe: "paket",
+      jumlah: 1
+    });
+  }
+
+  perbaruiKeranjang();
+  animasiKeranjang();
+  tampilkanToast(`${paket.nama} ditambahkan ke keranjang.`);
+}
+
+// TOMBOL TAMBAH MENU DAN PAKET
+document.addEventListener("click", event => {
+  const tombolMenu = event.target.closest(".add-cart");
+  const tombolPaket = event.target.closest("[data-paket]");
+
+  if (tombolMenu) {
+    tambahMenu(tombolMenu.dataset.id);
+  }
+
+  if (tombolPaket) {
+    tambahPaket(tombolPaket.dataset.paket);
+  }
+});
+
+// HITUNG ITEM DAN TOTAL
+function hitungJumlahItem() {
+  return keranjang.reduce((total, item) => total + item.jumlah, 0);
+}
+
+function hitungTotal() {
+  return keranjang.reduce(
+    (total, item) => total + item.harga * item.jumlah,
+    0
+  );
+}
+
+// MEMPERBARUI KERANJANG
+function perbaruiKeranjang() {
+  const jumlah = hitungJumlahItem();
+
+  const headerCount = document.getElementById("headerCount");
+  const floatingCount = document.getElementById("floatingCount");
+
+  if (headerCount) headerCount.textContent = jumlah;
+  if (floatingCount) floatingCount.textContent = jumlah;
+  if (cartTotal) cartTotal.textContent = formatRupiah(hitungTotal());
+  if (orderTotal) orderTotal.textContent = formatRupiah(hitungTotal());
+
+  tampilkanIsiKeranjang();
+  tampilkanRingkasan();
+}
+
+// ISI KERANJANG
+function tampilkanIsiKeranjang() {
+  if (!cartItems) return;
+
+  cartItems.innerHTML = "";
+
+  if (keranjang.length === 0) {
+    cartItems.innerHTML = `
+      <p class="empty-text">
+        Keranjang masih kosong. Pilih menu favoritmu!
+      </p>
+    `;
+    return;
+  }
+
+  keranjang.forEach(item => {
+    const row = document.createElement("div");
+    row.className = "cart-item";
+
+    row.innerHTML = `
+      <div>
+        <h4>${item.emoji} ${item.nama}</h4>
+        <small>${formatRupiah(item.harga)} / item</small>
+
+        <div class="quantity-control">
+          <button
+            data-aksi="kurang"
+            data-id="${item.id}"
+            data-tipe="${item.tipe}"
+          >−</button>
+
+          <span>${item.jumlah}</span>
+
+          <button
+            data-aksi="tambah"
+            data-id="${item.id}"
+            data-tipe="${item.tipe}"
+          >+</button>
+        </div>
+      </div>
+
+      <div class="cart-item-price">
+        ${formatRupiah(item.harga * item.jumlah)}
+      </div>
+    `;
+
+    cartItems.appendChild(row);
+  });
+}
+
+// RINGKASAN PESANAN
+function tampilkanRingkasan() {
+  if (!orderSummaryItems) return;
+
+  orderSummaryItems.innerHTML = "";
+
+  if (keranjang.length === 0) {
+    orderSummaryItems.innerHTML = `
+      <p class="empty-text">Belum ada menu yang dipilih.</p>
+    `;
+    return;
+  }
+
+  keranjang.forEach(item => {
+    const row = document.createElement("div");
+    row.className = "summary-item";
+
+    row.innerHTML = `
+      <div>
+        <b>${item.emoji} ${item.nama}</b>
+        <small>${item.jumlah} × ${formatRupiah(item.harga)}</small>
+      </div>
+
+      <b>${formatRupiah(item.harga * item.jumlah)}</b>
+    `;
+
+    orderSummaryItems.appendChild(row);
+  });
+}
+
+// UBAH JUMLAH ITEM
+document.addEventListener("click", event => {
+  const tombol = event.target.closest("[data-aksi]");
+  if (!tombol) return;
+
+  const item = keranjang.find(row =>
+    row.id === tombol.dataset.id &&
+    row.tipe === tombol.dataset.tipe
+  );
+
+  if (!item) return;
+
+  if (tombol.dataset.aksi === "tambah") {
+    item.jumlah++;
+  } else {
+    item.jumlah--;
+
+    if (item.jumlah <= 0) {
+      keranjang = keranjang.filter(row => row !== item);
+    }
+  }
+
+  perbaruiKeranjang();
+});
+
+// ANIMASI KERANJANG
+function animasiKeranjang() {
+  const tombol = document.getElementById("floatingCart");
+  if (!tombol) return;
+
+  tombol.classList.remove("bump");
+  void tombol.offsetWidth;
+  tombol.classList.add("bump");
+}
+
+// BUKA KERANJANG
+function bukaKeranjang() {
+  if (!cartPanel || !cartBackdrop) return;
+
+  cartPanel.classList.add("open");
+  cartBackdrop.classList.add("show");
+  cartPanel.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+
+  document.getElementById("closeCart")?.focus();
+}
+
+// TUTUP KERANJANG
+function tutupKeranjang() {
+  if (!cartPanel || !cartBackdrop) return;
+
+  cartPanel.classList.remove("open");
+  cartBackdrop.classList.remove("show");
+  cartPanel.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+}
+
+// TOMBOL KERANJANG
+document.getElementById("floatingCart")?.addEventListener(
+  "click",
+  bukaKeranjang
+);
+
+document.getElementById("headerCart")?.addEventListener(
+  "click",
+  bukaKeranjang
+);
+
+document.getElementById("closeCart")?.addEventListener(
+  "click",
+  tutupKeranjang
+);
+
+cartBackdrop?.addEventListener("click", tutupKeranjang);
+
+// KOSONGKAN KERANJANG
+document.getElementById("clearCart")?.addEventListener("click", () => {
+  if (keranjang.length === 0) {
+    tampilkanToast("Keranjang sudah kosong.");
+    return;
+  }
+
+  keranjang = [];
+  perbaruiKeranjang();
+  tampilkanToast("Keranjang dikosongkan.");
+});
+
+// MENUJU PEMESANAN
+function menujuPemesanan() {
+  tutupKeranjang();
+
+  document.getElementById("pemesanan")?.scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+document.getElementById("goCheckout")?.addEventListener(
+  "click",
+  menujuPemesanan
+);
+
+document.getElementById("reviewCart")?.addEventListener("click", () => {
+  if (keranjang.length === 0) {
+    tampilkanToast("Pilih menu terlebih dahulu.");
+  }
+
+  bukaKeranjang();
+});
+
+// METODE PEMESANAN
+const orderType = document.getElementById("orderType");
+const addressGroup = document.getElementById("addressGroup");
+const customerAddress = document.getElementById("customerAddress");
+
+orderType?.addEventListener("change", () => {
+  const perluAlamat = orderType.value === "Antar ke alamat";
+
+  addressGroup?.classList.toggle("hidden", !perluAlamat);
+
+  if (customerAddress) {
+    customerAddress.required = perluAlamat;
+
+    if (!perluAlamat) {
+      customerAddress.value = "";
+    }
+  }
+});
+
+// PESANAN MELALUI WHATSAPP
+document.getElementById("orderForm")?.addEventListener("submit", event => {
+  event.preventDefault();
+
+  if (keranjang.length === 0) {
+    tampilkanToast("Pilih menu terlebih dahulu.");
+    bukaKeranjang();
+    return;
+  }
+
+  if (NOMOR_WA.includes("x")) {
+    tampilkanToast("Ganti NOMOR_WA di script.js terlebih dahulu.");
+    return;
+  }
+
+  const nama = document.getElementById("customerName").value.trim();
+  const telepon = document.getElementById("customerPhone").value.trim();
+  const metode = orderType.value;
+  const waktu = document.getElementById("pickupTime").value.trim();
+  const alamat = customerAddress?.value.trim() || "";
+  const catatan = document.getElementById("notes").value.trim();
+
+  if (metode === "Antar ke alamat" && !alamat) {
+    tampilkanToast("Masukkan alamat pengantaran.");
+    customerAddress?.focus();
+    return;
+  }
+
+  let pesan = "PESANAN ROTI'O\n\n";
+
+  pesan += `Nama: ${nama}\n`;
+  pesan += `Nomor WhatsApp pemesan: ${telepon}\n`;
+  pesan += `Metode: ${metode}\n`;
+  pesan += `Waktu: ${waktu}\n`;
+
+  if (metode === "Antar ke alamat") {
+    pesan += `Alamat: ${alamat}\n`;
+  }
+
+  pesan += "\nDETAIL PESANAN:\n";
+
+  keranjang.forEach((item, index) => {
+    pesan += `${index + 1}. ${item.nama}\n`;
+    pesan += `Jumlah: ${item.jumlah}\n`;
+    pesan += `Subtotal: ${formatRupiah(item.harga * item.jumlah)}\n`;
+
+    if (item.tipe === "paket" && item.isi) {
+      pesan += "Isi paket:\n";
+
+      item.isi.forEach(isi => {
+        pesan += `- ${isi.nama} (${isi.jumlah})\n`;
+      });
+    }
+
+    pesan += "\n";
+  });
+
+  pesan += `TOTAL: ${formatRupiah(hitungTotal())}\n`;
+
+  if (catatan) {
+    pesan += `Catatan: ${catatan}\n`;
+  }
+
+  pesan += "\nMohon konfirmasi pesanan. Terima kasih!";
+
+  const url =
+    `https://wa.me/${NOMOR_WA}?text=${encodeURIComponent(pesan)}`;
+
+  window.open(url, "_blank", "noopener,noreferrer");
+});
+
+// NAVIGASI HP
+const menuToggle = document.getElementById("menuToggle");
+const navigation = document.getElementById("navigation");
+
+menuToggle?.addEventListener("click", () => {
+  if (!navigation) return;
+
+  const dibuka = navigation.classList.toggle("open");
+
+  menuToggle.setAttribute("aria-expanded", String(dibuka));
+  menuToggle.textContent = dibuka ? "✕" : "☰";
+});
+
+navigation?.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    navigation.classList.remove("open");
+
+    if (menuToggle) {
+      menuToggle.textContent = "☰";
+      menuToggle.setAttribute("aria-expanded", "false");
+    }
+  });
+});
+
+// TOMBOL ESCAPE
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    tutupKeranjang();
+    navigation?.classList.remove("open");
+
+    if (menuToggle) {
+      menuToggle.textContent = "☰";
+      menuToggle.setAttribute("aria-expanded", "false");
+    }
+  }
+});
+
+// TAHUN FOOTER
+const yearElement = document.getElementById("year");
+
+if (yearElement) {
+  yearElement.textContent = new Date().getFullYear();
+}
+
+// TAMPILKAN MENU DAN PAKET SAAT HALAMAN DIBUKA
+tampilkanMenu("Semua");
+tampilkanPaket();
+perbaruiKeranjang();
