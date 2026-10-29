@@ -184,17 +184,12 @@ function buatFoto(foto, nama, emoji, kelas = "") {
   return `
     <div class="${kelas}">
       <img
-        src="${foto}"
+        src="./${foto}"
         alt="${nama}"
         loading="lazy"
-        onerror="
-          this.style.display='none';
-          this.nextElementSibling.style.display='grid';
-        "
+        onerror="this.onerror=null; this.style.display='none'; this.parentElement.querySelector('.image-placeholder').style.display='grid';"
       >
-      <span class="image-placeholder" style="display:none">
-        ${emoji}
-      </span>
+      <span class="image-placeholder">${emoji}</span>
     </div>
   `;
 }
