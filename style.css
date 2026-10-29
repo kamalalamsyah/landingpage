@@ -1168,78 +1168,9 @@ section[id] {
 
 
 /* PERBAIKAN RESPONSIVE HP */
-@media screen and (max-width: 900px) {
-
-    html,
-    body {
-        width: 100%;
-        max-width: 100%;
-        overflow-x: hidden;
-    }
-
-    main,
-    section,
-    .package-section {
-        box-sizing: border-box;
-        max-width: 100%;
-    }
-
-    .package-section {
-        width: 100%;
-        padding: 25px 16px;
-        margin: 0;
-    }
-
-    .package-section .container,
-    .package-section .section-container {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-        margin-left: auto;
-        margin-right: auto;
-        box-sizing: border-box;
-    }
-
-    .package-section h2,
-    .package-section h3,
-    .package-section p {
-        overflow-wrap: anywhere;
-    }
-
-    .package-section .package-grid,
-    .package-section .packages-grid {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr);
-        width: 100%;
-        min-width: 0;
-        gap: 14px;
-    }
-
-    .package-section .package-card,
-    .package-section .preset-card {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-        box-sizing: border-box;
-    }
-
-    .package-section button {
-        max-width: 100%;
-    }
-
-    img,
-    iframe {
-        max-width: 100%;
-    }
-}
-
-@media screen and (max-width: 650px) {
-    .package-section {
-        padding: 22px 12px;
-    }
-
-    .package-section h2 {
-        font-size: 25px;
-        line-height: 1.3;
-    }
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .bento-about { grid-template-columns: 1fr; }
+    .cart-drawer-playful { width: 100%; right: -100%; }
+    .footer-playful { grid-template-columns: 1fr; }
 }
