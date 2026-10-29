@@ -1,15 +1,13 @@
 
 /* =====================================
-   ROTI'O - SCRIPT WEBSITE
-   Tanpa fitur Bikin Paket Sendiri
+   ROTI'O - SCRIPT.JS
+   Menu, Foto, Paket Hemat, Keranjang
 ===================================== */
 
-// GANTI dengan nomor WhatsApp tujuan pemesanan.
-// Gunakan kode negara 62 tanpa tanda +.
-// Contoh format: 6281234567890
+// GANTI dengan nomor WhatsApp tujuan.
+// Gunakan kode negara 62, tanpa tanda +.
 const NOMOR_WA = "628xxxxxxxxxx";
 
-// FORMAT RUPIAH
 function formatRupiah(angka) {
   return new Intl.NumberFormat("id-ID", {
     style: "currency",
@@ -18,13 +16,15 @@ function formatRupiah(angka) {
   }).format(angka);
 }
 
-// DATA MENU
+// DATA MENU DAN FOTO
+// Nama file foto mengikuti file yang terlihat di GitHub.
 const daftarMenu = [
   {
     id: "roti-original",
     nama: "Roti Original",
     kategori: "Roti",
     harga: 12000,
+    foto: "ori.jpg",
     emoji: "🥐",
     deskripsi: "Roti kopi dengan aroma khas."
   },
@@ -33,72 +33,81 @@ const daftarMenu = [
     nama: "Roti Cokelat",
     kategori: "Roti",
     harga: 14000,
+    foto: "kue.jpg",
     emoji: "🍫",
-    deskripsi: "Roti dengan rasa cokelat."
+    deskripsi: "Pilihan roti dengan rasa cokelat."
   },
   {
     id: "croissant",
     nama: "Croissant",
     kategori: "Pastry",
     harga: 18000,
+    foto: "crombo.jpg",
     emoji: "🥐",
-    deskripsi: "Pastry renyah dan lembut."
+    deskripsi: "Pastry renyah untuk teman santai."
   },
   {
     id: "croissant-martabak",
-    nama: "Croissant Martabak",
+    nama: "Martabak",
     kategori: "Pastry",
     harga: 20000,
+    foto: "martabak.jpg",
     emoji: "🥮",
-    deskripsi: "Pastry dengan rasa martabak."
+    deskripsi: "Camilan dengan rasa yang nikmat."
+  },
+  {
+    id: "cone",
+    nama: "Es Krim Cone",
+    kategori: "Es Krim",
+    harga: 12000,
+    foto: "cone.jpg",
+    emoji: "🍦",
+    deskripsi: "Es krim cone yang menyegarkan."
   },
   {
     id: "latte",
     nama: "Latte",
     kategori: "Minuman",
     harga: 18000,
+    foto: "latte.jpg",
     emoji: "☕",
     deskripsi: "Kopi susu dengan rasa lembut."
   },
   {
-    id: "americano",
-    nama: "Americano",
-    kategori: "Minuman",
-    harga: 15000,
-    emoji: "🧋",
-    deskripsi: "Kopi dengan cita rasa khas."
-  },
-  {
-    id: "butterscotch",
-    nama: "Latte Butterscotch",
-    kategori: "Minuman",
-    harga: 22000,
-    emoji: "🥤",
-    deskripsi: "Latte dengan rasa butterscotch."
-  },
-  {
-    id: "cokelat",
-    nama: "Cokelat",
+    id: "boba",
+    nama: "Es Boba",
     kategori: "Minuman",
     harga: 18000,
-    emoji: "🍫",
-    deskripsi: "Minuman cokelat yang nikmat."
+    foto: "esboba.jpg",
+    emoji: "🥤",
+    deskripsi: "Minuman segar untuk menemani harimu."
   },
   {
-    id: "es-krim-vanila",
-    nama: "Es Krim Vanila",
-    kategori: "Es Krim",
+    id: "gula-merah",
+    nama: "Gula Merah",
+    kategori: "Minuman",
+    harga: 18000,
+    foto: "gulamerah.jpg",
+    emoji: "🧋",
+    deskripsi: "Minuman dengan rasa gula merah."
+  },
+  {
+    id: "leci",
+    nama: "Leci",
+    kategori: "Minuman",
+    harga: 17000,
+    foto: "leci.jpg",
+    emoji: "🥤",
+    deskripsi: "Minuman dengan rasa leci."
+  },
+  {
+    id: "roti-kopi",
+    nama: "Roti Kopi",
+    kategori: "Roti",
     harga: 12000,
-    emoji: "🍦",
-    deskripsi: "Es krim rasa vanila."
-  },
-  {
-    id: "es-krim-cokelat",
-    nama: "Es Krim Cokelat",
-    kategori: "Es Krim",
-    harga: 14000,
-    emoji: "🍨",
-    deskripsi: "Es krim dengan rasa cokelat."
+    foto: "roties.jpg",
+    emoji: "🍞",
+    deskripsi: "Roti dengan aroma kopi."
   }
 ];
 
@@ -108,6 +117,7 @@ const daftarPaket = [
     id: "paket-1",
     nama: "Paket Santai",
     harga: 25000,
+    foto: "ori.jpg",
     emoji: "☕",
     deskripsi: "Roti Original + Latte",
     isi: [
@@ -119,6 +129,7 @@ const daftarPaket = [
     id: "paket-2",
     nama: "Paket Berdua",
     harga: 42000,
+    foto: "roties.jpg",
     emoji: "🥐",
     deskripsi: "2 Roti Original + 2 Latte",
     isi: [
@@ -130,20 +141,19 @@ const daftarPaket = [
     id: "paket-3",
     nama: "Paket Komplit",
     harga: 35000,
+    foto: "cone.jpg",
     emoji: "🎁",
-    deskripsi: "Roti Original + Latte + Es Krim Vanila",
+    deskripsi: "Roti Original + Latte + Es Krim",
     isi: [
       { nama: "Roti Original", jumlah: 1 },
       { nama: "Latte", jumlah: 1 },
-      { nama: "Es Krim Vanila", jumlah: 1 }
+      { nama: "Es Krim Cone", jumlah: 1 }
     ]
   }
 ];
 
-// KERANJANG
 let keranjang = [];
 
-// ELEMEN HTML
 const menuGrid = document.getElementById("menuGrid");
 const presetGrid = document.getElementById("presetGrid");
 const cartPanel = document.getElementById("cartPanel");
@@ -169,18 +179,39 @@ function tampilkanToast(pesan) {
   }, 2500);
 }
 
-// TAMPILKAN MENU
+// MEMBUAT KARTU FOTO PRODUK
+function buatFoto(foto, nama, emoji, kelas = "") {
+  return `
+    <div class="${kelas}">
+      <img
+        src="${foto}"
+        alt="${nama}"
+        loading="lazy"
+        onerror="
+          this.style.display='none';
+          this.nextElementSibling.style.display='grid';
+        "
+      >
+      <span class="image-placeholder" style="display:none">
+        ${emoji}
+      </span>
+    </div>
+  `;
+}
+
+// MENAMPILKAN SEMUA MENU
 function tampilkanMenu(kategori = "Semua") {
-  const menuTerpilih = daftarMenu.filter(menu => {
-    return kategori === "Semua" || menu.kategori === kategori;
-  });
+  if (!menuGrid) return;
+
+  const menuTerpilih = daftarMenu.filter(menu =>
+    kategori === "Semua" || menu.kategori === kategori
+  );
 
   menuGrid.innerHTML = "";
 
   if (menuTerpilih.length === 0) {
-    menuGrid.innerHTML = `
-      <p class="empty-menu">Menu belum tersedia.</p>
-    `;
+    menuGrid.innerHTML =
+      '<p class="empty-menu">Menu belum tersedia.</p>';
     return;
   }
 
@@ -189,10 +220,11 @@ function tampilkanMenu(kategori = "Semua") {
     kartu.className = "menu-card";
 
     kartu.innerHTML = `
-      <div class="menu-image">
-        <span class="image-placeholder">${menu.emoji}</span>
-        <span class="menu-badge">${menu.kategori}</span>
-      </div>
+      ${buatFoto(menu.foto, menu.nama, menu.emoji, "menu-image")
+        .replace(
+          '<div class="menu-image">',
+          '<div class="menu-image">'
+        )}
 
       <div class="menu-info">
         <h3>${menu.nama}</h3>
@@ -225,13 +257,14 @@ document.querySelectorAll(".category").forEach(tombol => {
     });
 
     tombol.classList.add("active");
-
     tampilkanMenu(tombol.dataset.category);
   });
 });
 
-// TAMPILKAN PAKET HEMAT
+// MENAMPILKAN PAKET HEMAT
 function tampilkanPaket() {
+  if (!presetGrid) return;
+
   presetGrid.innerHTML = "";
 
   daftarPaket.forEach(paket => {
@@ -239,7 +272,12 @@ function tampilkanPaket() {
     kartu.className = "preset-card";
 
     kartu.innerHTML = `
-      <div class="preset-icon">${paket.emoji}</div>
+      ${buatFoto(
+        paket.foto,
+        paket.nama,
+        paket.emoji,
+        "preset-image"
+      )}
 
       <h3>${paket.nama}</h3>
       <p>${paket.deskripsi}</p>
@@ -260,43 +298,44 @@ function tampilkanPaket() {
   });
 }
 
-// TAMBAH MENU KE KERANJANG
+// MENAMBAHKAN MENU
 function tambahMenu(id) {
   const menu = daftarMenu.find(item => item.id === id);
-
   if (!menu) return;
 
-  const itemAda = keranjang.find(item => item.id === id);
+  const itemAda = keranjang.find(
+    item => item.id === id && item.tipe === "menu"
+  );
 
   if (itemAda) {
     itemAda.jumlah++;
   } else {
     keranjang.push({
       ...menu,
-      jumlah: 1,
-      tipe: "menu"
+      tipe: "menu",
+      jumlah: 1
     });
   }
 
   perbaruiKeranjang();
   animasiKeranjang();
-  tampilkanToast(menu.nama + " ditambahkan ke keranjang!");
+  tampilkanToast(menu.nama + " ditambahkan!");
 }
 
-// TAMBAH PAKET KE KERANJANG
+// MENAMBAHKAN PAKET
 function tambahPaket(id) {
   const paket = daftarPaket.find(item => item.id === id);
-
   if (!paket) return;
 
-  const itemAda = keranjang.find(item => item.id === id);
+  const itemAda = keranjang.find(
+    item => item.id === id && item.tipe === "paket"
+  );
 
   if (itemAda) {
     itemAda.jumlah++;
   } else {
     keranjang.push({
       ...paket,
-      kategori: "Paket Hemat",
       tipe: "paket",
       jumlah: 1
     });
@@ -304,39 +343,39 @@ function tambahPaket(id) {
 
   perbaruiKeranjang();
   animasiKeranjang();
-  tampilkanToast(paket.nama + " ditambahkan ke keranjang!");
+  tampilkanToast(paket.nama + " ditambahkan!");
 }
 
-// EVENT TOMBOL MENU DAN PAKET
+// TOMBOL TAMBAH MENU DAN PAKET
 document.addEventListener("click", event => {
   const tombolMenu = event.target.closest(".add-cart");
+  const tombolPaket = event.target.closest("[data-paket]");
 
   if (tombolMenu) {
     tambahMenu(tombolMenu.dataset.id);
   }
-
-  const tombolPaket = event.target.closest("[data-paket]");
 
   if (tombolPaket) {
     tambahPaket(tombolPaket.dataset.paket);
   }
 });
 
-// HITUNG TOTAL ITEM
+// HITUNG ITEM DAN TOTAL
 function hitungJumlahItem() {
-  return keranjang.reduce((total, item) => {
-    return total + item.jumlah;
-  }, 0);
+  return keranjang.reduce(
+    (total, item) => total + item.jumlah,
+    0
+  );
 }
 
-// HITUNG TOTAL HARGA
 function hitungTotal() {
-  return keranjang.reduce((total, item) => {
-    return total + item.harga * item.jumlah;
-  }, 0);
+  return keranjang.reduce(
+    (total, item) => total + item.harga * item.jumlah,
+    0
+  );
 }
 
-// PERBARUI KERANJANG DAN RINGKASAN
+// MEMPERBARUI KERANJANG
 function perbaruiKeranjang() {
   const jumlah = hitungJumlahItem();
   const total = hitungTotal();
@@ -358,7 +397,7 @@ function tampilkanIsiKeranjang() {
   if (keranjang.length === 0) {
     cartItems.innerHTML = `
       <p class="empty-text">
-        Keranjang masih kosong. Yuk, pilih menu favoritmu!
+        Keranjang masih kosong. Pilih menu favoritmu!
       </p>
     `;
     return;
@@ -371,25 +410,16 @@ function tampilkanIsiKeranjang() {
     elemen.innerHTML = `
       <div>
         <h4>${item.emoji} ${item.nama}</h4>
-
-        <small>
-          ${formatRupiah(item.harga)} / item
-        </small>
+        <small>${formatRupiah(item.harga)} / item</small>
 
         <div class="quantity-control">
-          <button
-            data-aksi="kurang"
-            data-id="${item.id}"
-            aria-label="Kurangi jumlah ${item.nama}"
-          >−</button>
+          <button data-aksi="kurang" data-id="${item.id}"
+            data-tipe="${item.tipe}">−</button>
 
           <span>${item.jumlah}</span>
 
-          <button
-            data-aksi="tambah"
-            data-id="${item.id}"
-            aria-label="Tambah jumlah ${item.nama}"
-          >+</button>
+          <button data-aksi="tambah" data-id="${item.id}"
+            data-tipe="${item.tipe}">+</button>
         </div>
       </div>
 
@@ -407,9 +437,8 @@ function tampilkanRingkasan() {
   orderSummaryItems.innerHTML = "";
 
   if (keranjang.length === 0) {
-    orderSummaryItems.innerHTML = `
-      <p class="empty-text">Belum ada menu yang dipilih.</p>
-    `;
+    orderSummaryItems.innerHTML =
+      '<p class="empty-text">Belum ada menu yang dipilih.</p>';
     return;
   }
 
@@ -420,9 +449,10 @@ function tampilkanRingkasan() {
     elemen.innerHTML = `
       <div>
         <b>${item.nama}</b>
-        <small>${item.jumlah} item × ${formatRupiah(item.harga)}</small>
+        <small>
+          ${item.jumlah} × ${formatRupiah(item.harga)}
+        </small>
       </div>
-
       <b>${formatRupiah(item.harga * item.jumlah)}</b>
     `;
 
@@ -430,46 +460,43 @@ function tampilkanRingkasan() {
   });
 }
 
-// UBAH JUMLAH ITEM DI KERANJANG
+// UBAH JUMLAH
 document.addEventListener("click", event => {
   const tombol = event.target.closest("[data-aksi]");
-
   if (!tombol) return;
 
-  const id = tombol.dataset.id;
-  const aksi = tombol.dataset.aksi;
-
-  const item = keranjang.find(item => item.id === id);
+  const item = keranjang.find(item =>
+    item.id === tombol.dataset.id &&
+    item.tipe === tombol.dataset.tipe
+  );
 
   if (!item) return;
 
-  if (aksi === "tambah") {
+  if (tombol.dataset.aksi === "tambah") {
     item.jumlah++;
-  }
-
-  if (aksi === "kurang") {
+  } else {
     item.jumlah--;
 
     if (item.jumlah <= 0) {
-      keranjang = keranjang.filter(item => item.id !== id);
+      keranjang = keranjang.filter(
+        data => data !== item
+      );
     }
   }
 
   perbaruiKeranjang();
 });
 
-// ANIMASI TOMBOL KERANJANG
+// ANIMASI KERANJANG
 function animasiKeranjang() {
   const tombol = document.getElementById("floatingCart");
 
   tombol.classList.remove("bump");
-
   void tombol.offsetWidth;
-
   tombol.classList.add("bump");
 }
 
-// BUKA KERANJANG
+// BUKA DAN TUTUP KERANJANG
 function bukaKeranjang() {
   cartPanel.classList.add("open");
   cartBackdrop.classList.add("show");
@@ -477,7 +504,6 @@ function bukaKeranjang() {
   document.body.style.overflow = "hidden";
 }
 
-// TUTUP KERANJANG
 function tutupKeranjang() {
   cartPanel.classList.remove("open");
   cartBackdrop.classList.remove("show");
@@ -505,10 +531,10 @@ document.getElementById("clearCart").addEventListener("click", () => {
 
   keranjang = [];
   perbaruiKeranjang();
-  tampilkanToast("Keranjang berhasil dikosongkan.");
+  tampilkanToast("Keranjang dikosongkan.");
 });
 
-// NAVIGASI KE PEMESANAN
+// MENUJU CHECKOUT
 function menujuPemesanan() {
   tutupKeranjang();
 
@@ -520,18 +546,15 @@ function menujuPemesanan() {
 document.getElementById("goCheckout")
   .addEventListener("click", menujuPemesanan);
 
-document.getElementById("reviewCart")
-  .addEventListener("click", () => {
-    if (keranjang.length === 0) {
-      tampilkanToast("Pilih menu terlebih dahulu.");
-      bukaKeranjang();
-      return;
-    }
+document.getElementById("reviewCart").addEventListener("click", () => {
+  if (keranjang.length === 0) {
+    tampilkanToast("Pilih menu terlebih dahulu.");
+  }
 
-    bukaKeranjang();
-  });
+  bukaKeranjang();
+});
 
-// PILIH METODE PESANAN
+// METODE PESANAN DAN ALAMAT
 const orderType = document.getElementById("orderType");
 const addressGroup = document.getElementById("addressGroup");
 const customerAddress = document.getElementById("customerAddress");
@@ -542,23 +565,21 @@ orderType.addEventListener("change", () => {
   addressGroup.classList.toggle("hidden", !perluAlamat);
   customerAddress.required = perluAlamat;
 
-  if (!perluAlamat) {
-    customerAddress.value = "";
-  }
+  if (!perluAlamat) customerAddress.value = "";
 });
 
-// FORM PEMESANAN WHATSAPP
+// KIRIM PESANAN KE WHATSAPP
 document.getElementById("orderForm").addEventListener("submit", event => {
   event.preventDefault();
 
   if (keranjang.length === 0) {
-    tampilkanToast("Keranjang masih kosong. Pilih menu dahulu.");
+    tampilkanToast("Pilih menu terlebih dahulu.");
     bukaKeranjang();
     return;
   }
 
   if (NOMOR_WA.includes("x")) {
-    tampilkanToast("Atur nomor WhatsApp tujuan di script.js terlebih dahulu.");
+    tampilkanToast("Atur nomor WhatsApp di script.js terlebih dahulu.");
     return;
   }
 
@@ -570,7 +591,7 @@ document.getElementById("orderForm").addEventListener("submit", event => {
   const catatan = document.getElementById("notes").value.trim();
 
   if (!nama || !telepon || !metode || !waktu) {
-    tampilkanToast("Lengkapi data pemesanan terlebih dahulu.");
+    tampilkanToast("Lengkapi data pemesanan.");
     return;
   }
 
@@ -580,7 +601,7 @@ document.getElementById("orderForm").addEventListener("submit", event => {
     return;
   }
 
-  let pesan = `PESANAN ROTI'O\n\n`;
+  let pesan = "PESANAN ROTI'O\n\n";
   pesan += `Nama: ${nama}\n`;
   pesan += `Nomor WhatsApp: ${telepon}\n`;
   pesan += `Metode: ${metode}\n`;
@@ -590,29 +611,29 @@ document.getElementById("orderForm").addEventListener("submit", event => {
     pesan += `Alamat: ${alamat}\n`;
   }
 
-  pesan += `\nDETAIL PESANAN:\n`;
+  pesan += "\nDETAIL PESANAN:\n";
 
   keranjang.forEach((item, index) => {
     pesan += `${index + 1}. ${item.nama}\n`;
-    pesan += `   Jumlah: ${item.jumlah}\n`;
-    pesan += `   Harga: ${formatRupiah(item.harga * item.jumlah)}\n`;
+    pesan += `Jumlah: ${item.jumlah}\n`;
+    pesan += `Subtotal: ${formatRupiah(item.harga * item.jumlah)}\n`;
 
     if (item.tipe === "paket" && item.isi) {
-      pesan += `   Isi paket:\n`;
+      pesan += "Isi paket:\n";
 
       item.isi.forEach(isi => {
-        pesan += `   - ${isi.nama} (${isi.jumlah} item)\n`;
+        pesan += `- ${isi.nama} (${isi.jumlah})\n`;
       });
     }
+
+    pesan += "\n";
   });
 
-  pesan += `\nTOTAL: ${formatRupiah(hitungTotal())}\n`;
+  pesan += `TOTAL: ${formatRupiah(hitungTotal())}\n`;
 
-  if (catatan) {
-    pesan += `\nCatatan: ${catatan}\n`;
-  }
+  if (catatan) pesan += `Catatan: ${catatan}\n`;
 
-  pesan += `\nMohon konfirmasi ketersediaan dan total pesanan. Terima kasih!`;
+  pesan += "\nMohon konfirmasi pesanan. Terima kasih!";
 
   const url =
     `https://wa.me/${NOMOR_WA}?text=${encodeURIComponent(pesan)}`;
@@ -620,7 +641,7 @@ document.getElementById("orderForm").addEventListener("submit", event => {
   window.open(url, "_blank", "noopener,noreferrer");
 });
 
-// MENU MOBILE
+// NAVIGASI MOBILE
 const menuToggle = document.getElementById("menuToggle");
 const navigation = document.getElementById("navigation");
 
@@ -639,7 +660,6 @@ navigation.querySelectorAll("a").forEach(link => {
   });
 });
 
-// TUTUP KERANJANG DENGAN TOMBOL ESCAPE
 document.addEventListener("keydown", event => {
   if (event.key === "Escape") {
     tutupKeranjang();
@@ -652,7 +672,7 @@ document.addEventListener("keydown", event => {
 document.getElementById("year").textContent =
   new Date().getFullYear();
 
-// TAMPILKAN WEBSITE
+// TAMPILKAN SEMUA MENU DAN PAKET SAAT HALAMAN DIBUKA
 tampilkanMenu();
 tampilkanPaket();
 perbaruiKeranjang();
