@@ -1299,23 +1299,23 @@ section[id] {
   /* MENU: 2 kolom, gamb
 
   
-.lokasi {
+  .lokasi {
     padding: 50px 20px;
     text-align: center;
     background-color: #fff8ef;
 }
 
-.lokasi h2 {
+  .lokasi h2 {
     color: #6b351d;
     margin-bottom: 10px;
 }
 
-.lokasi p {
+  .lokasi p {
     color: #654c3c;
     margin-bottom: 25px;
 }
 
-.map-container {
+  .map-container {
     max-width: 1000px;
     margin: auto;
     overflow: hidden;
@@ -1323,13 +1323,13 @@ section[id] {
     border: 2px solid #e8d2bd;
 }
 
-.map-container iframe {
+  .map-container iframe {
     display: block;
     width: 100%;
     border: 0;
 }
 
-.tombol-maps {
+  .tombol-maps {
     display: inline-block;
     margin-top: 20px;
     padding: 12px 22px;
@@ -1339,6 +1339,6 @@ section[id] {
     border-radius: 8px;
 }
 
-.tombol-maps:hover {
+  .tombol-maps:hover {
     background-color: #4e2818;
 }
