@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#5b260e">
+  <title>Roti'O - Rasa Favorit Setiap Saat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="header" id="beranda">
+  <a href="#beranda" class="brand">
+    <img src="hero.png" alt="Logo Roti'O" class="brand-logo">
+    <span><b>Roti'O</b><small>Roti, Kopi, dan Cerita</small></span>
+  </a>
+
+  <button class="menu-toggle" id="menuToggle" aria-label="Buka navigasi" aria-expanded="false">☰</button>
+  <nav class="navigation" id="navigation">
+    <a href="#beranda">Beranda</a>
+    <a href="#menu">Menu</a>
+    <a href="#paket">Paket Hemat</a>
+    <a href="#ulasan">Ulasan</a>
+    <a href="#faq">FAQ</a>
+    <a href="#lokasi">Lokasi</a>
+    <a href="#pemesanan">Pesan Sekarang</a>
+  </nav>
+
+  <button class="header-cart" id="headerCart" aria-label="Buka keranjang">🛒 <span id="headerCount">0</span></button>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-content">
+      <span class="eyebrow">HANGAT • LEZAT • ISTIMEWA</span>
+      <h1>Roti'O, Rasa Favorit <span>Setiap Saat!</span></h1>
+      <p>Temani harimu dengan minuman segar, pastry lezat, dan camilan favorit untuk setiap momen.</p>
+      <div class="hero-actions">
+        <a href="#menu" class="btn btn-primary">Jelajahi Menu ↘</a>
+        <a href="#paket" class="btn btn-outline">Lihat Paket Hemat</a>
+      </div>
+      <div class="hero-stats">
+        <span>☕ <b>Minuman</b></span>
+        <span>🥐 <b>Pastry</b></span>
+        <span>🍦 <b>Es Krim</b></span>
+      </div>
+    </div>
+    <div class="hero-visual" aria-label="Ilustrasi menu Roti'O">
+      <div class="hero-circle">
+        <div class="hero-logo-mark">
+          <span class="hero-logo-emoji">🥐</span>
+          <strong>Roti'O</strong>
+          <small>Roti, Kopi, dan Cerita</small>
+        </div>
+      </div>
+      <div class="hero-food food-one">🥐</div>
+      <div class="hero-food food-two">☕</div>
+      <div class="hero-sticker">Enak<br>Lezat<br>Istimewa!</div>
+    </div>
+  </section>
+
+  <section class="section" id="menu">
+    <div class="section-heading">
+      <div><span class="eyebrow">PILIHAN FAVORIT</span><h2>Jelajahi Menu</h2></div>
+      <p>Temukan teman terbaik untuk menemani harimu.</p>
+    </div>
+    <div class="category-nav" id="categoryNav">
+      <button class="category active" data-category="Semua">✦ Semua Menu</button>
+      <button class="category" data-category="Minuman">🥤 Minuman</button>
+      <button class="category" data-category="Pastry">🥐 Pastry</button>
+      <button class="category" data-category="Es Krim">🍦 Es Krim</button>
+      <button class="category" data-category="Roti">🍞 Roti Original</button>
+    </div>
+    <div class="menu-grid" id="menuGrid"></div>
+  </section>
+
+  <section class="section package-section" id="paket">
+    <div class="section-heading">
+      <div><span class="eyebrow">LEBIH HEMAT, LEBIH NIKMAT</span><h2>Pilihan Paket Hemat</h2></div>
+      <p>Nikmati kombinasi menu favorit dengan pilihan paket yang praktis.</p>
+    </div>
+    <div class="preset-grid" id="presetGrid"></div>
+    <p class="disclaimer">Harga paket merupakan contoh dan dapat disesuaikan dengan harga outlet.</p>
+  </section>
+
+  <section class="section review-section" id="ulasan">
+    <div class="section-heading">
+      <div><span class="eyebrow">CERITA PELANGGAN</span><h2>Ulasan Pelanggan</h2></div>
+      <p>Contoh tampilan ulasan pelanggan.</p>
+    </div>
+    <div class="review-grid">
+      <article class="review-card">
+        <div class="review-person"><div class="avatar">S</div><div><b>Siti</b><small>Pelanggan</small></div></div>
+        <div class="stars">★★★★★</div><p>"Latte terasa lembut dan cocok untuk teman santai."</p>
+      </article>
+      <article class="review-card">
+        <div class="review-person"><div class="avatar">A</div><div><b>Andi</b><small>Pelanggan</small></div></div>
+        <div class="stars">★★★★★</div><p>"Pastry-nya enak untuk camilan saat istirahat."</p>
+      </article>
+      <article class="review-card">
+        <div class="review-person"><div class="avatar">R</div><div><b>Rina</b><small>Pelanggan</small></div></div>
+        <div class="stars">★★★★★</div><p>"Praktis karena beberapa menu bisa dipesan sekaligus."</p>
+      </article>
+    </div>
+    <p class="disclaimer">Catatan: ulasan di atas merupakan contoh tampilan, bukan testimoni pelanggan terverifikasi.</p>
+  </section>
+
+  <section class="section faq-section" id="faq">
+    <div class="section-heading"><div><span class="eyebrow">BUTUH INFORMASI?</span><h2>Pertanyaan Umum</h2></div></div>
+    <div class="faq-list">
+      <details><summary>Menu apa saja yang tersedia?</summary><p>Tersedia roti, pastry, minuman, dan es krim. Lihat pilihan pada bagian Menu.</p></details>
+      <details><summary>Bagaimana cara memesan paket hemat?</summary><p>Pilih paket yang diinginkan lalu tekan tombol Tambah Paket. Paket akan masuk ke keranjang.</p></details>
+      <details><summary>Bagaimana cara memesan?</summary><p>Pilih menu, periksa keranjang, isi formulir pemesanan, lalu kirim detailnya melalui WhatsApp.</p></details>
+      <details><summary>Apakah jumlah pesanan bisa diubah?</summary><p>Bisa. Gunakan tombol tambah dan kurang pada keranjang sebelum mengirim pesanan.</p></details>
+      <details><summary>Apakah harga pada website ini harga resmi?</summary><p>Harga di website ini masih contoh. Sesuaikan dengan harga outlet sebelum dipublikasikan.</p></details>
+    </div>
+  </section>
+
+  <section class="order-section" id="pemesanan">
+    <div class="order-intro">
+      <span class="eyebrow">SAATNYA MENIKMATI FAVORITMU</span>
+      <h2>Pesan Sekarang!</h2>
+      <p>Lengkapi detail pemesananmu. Pastikan keranjang sudah sesuai sebelum mengirim pesanan.</p>
+      <div class="order-decoration">☕ 🥐 🍦</div>
+    </div>
+
+    <form id="orderForm" class="order-form">
+      <h3>Data Pemesanan</h3>
+      <label for="customerName">Nama lengkap *</label>
+      <input id="customerName" name="customerName" type="text" placeholder="Masukkan nama kamu" required>
+
+      <label for="customerPhone">Nomor WhatsApp *</label>
+      <input id="customerPhone" name="customerPhone" type="tel" placeholder="08xxxxxxxxxx" required>
+
+      <label for="orderType">Metode pesanan *</label>
+      <select id="orderType" name="orderType" required>
+        <option value="">Pilih metode pesanan</option>
+        <option value="Ambil di outlet">Ambil di outlet</option>
+        <option value="Antar ke alamat">Antar ke alamat</option>
+      </select>
+
+      <label for="pickupTime">Waktu pengambilan/pengantaran *</label>
+      <input id="pickupTime" name="pickupTime" type="text" placeholder="Contoh: Hari ini pukul 15.00" required>
+
+      <div id="addressGroup" class="hidden">
+        <label for="customerAddress">Alamat pengantaran *</label>
+        <textarea id="customerAddress" name="customerAddress" placeholder="Masukkan alamat lengkap"></textarea>
+      </div>
+
+      <label for="notes">Catatan tambahan</label>
+      <textarea id="notes" name="notes" placeholder="Catatan untuk pesananmu"></textarea>
+      <label class="terms"><input type="checkbox" id="agreeTerms" required> Saya sudah memeriksa detail dan jumlah pesanan.</label>
+      <button type="submit" class="btn btn-primary submit-order">Kirim Pesanan via WhatsApp ↗</button>
+      <p class="form-note">Pesanan akan dibuka di WhatsApp untuk konfirmasi akhir.</p>
+    </form>
+
+    <aside class="order-summary">
+      <h3>🛒 Ringkasan Pesanan</h3>
+      <div id="orderSummaryItems"><p class="empty-text">Belum ada menu yang dipilih.</p></div>
+      <div class="summary-total"><span>Total</span><strong id="orderTotal">Rp0</strong></div>
+      <button type="button" id="reviewCart" class="btn btn-outline full-width">Periksa Keranjang</button>
+    </aside>
+  </section>
+
+  <!-- Lokasi pencarian outlet ditaruh tepat di atas footer -->
+  <section class="location-section" id="lokasi">
+    <div class="location-container">
+      <div class="location-info">
+        <span class="eyebrow">CARI OUTLET</span>
+        <h2>Temukan Roti'O Terdekat</h2>
+        <p>Peta ini menampilkan hasil pencarian outlet Roti'O di Cimahi. Pilih lokasi pada Google Maps untuk melihat alamat dan petunjuk jalan. Lokasi outlet tertentu belum ditetapkan pada website ini.</p>
+        <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&query=Roti%27O+Cimahi" target="_blank" rel="noopener noreferrer">📍 Buka Google Maps</a>
+      </div>
+      <div class="location-map">
+        <iframe src="https://maps.google.com/maps?q=Roti%27O%20Cimahi&t=&z=13&ie=UTF8&iwloc=&output=embed" title="Pencarian outlet Roti'O di Cimahi" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-main">
+    <a class="footer-brand" href="#beranda">
+      <img src="hero.png" alt="Logo Roti'O" class="footer-logo">
+      <span><b>Roti'O</b><small>Roti, Kopi, dan Cerita</small></span>
+    </a>
+    <p>Rasa favorit untuk menemani setiap cerita.</p>
+    <div class="footer-links">
+      <a href="#beranda">Beranda</a><a href="#menu">Menu</a><a href="#paket">Paket Hemat</a>
+      <a href="#ulasan">Ulasan</a><a href="#faq">FAQ</a><a href="#lokasi">Lokasi</a><a href="#pemesanan">Pemesanan</a>
+    </div>
+  </div>
+  <div class="footer-bottom"><span>© <span id="year"></span> Roti'O Menu Demo.</span><a href="#beranda">Kembali ke atas ↑</a></div>
+</footer>
+
+<div class="cart-backdrop" id="cartBackdrop"></div>
+<aside class="cart-panel" id="cartPanel" aria-label="Keranjang belanja" aria-hidden="true">
+  <div class="cart-header">
+    <div><span class="eyebrow">PESANANMU</span><h2>Keranjang</h2></div>
+    <button id="closeCart" class="close-cart" aria-label="Tutup keranjang">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-bottom">
+    <div class="summary-total"><span>Total belanja</span><strong id="cartTotal">Rp0</strong></div>
+    <button id="goCheckout" class="btn btn-primary full-width">Lanjut ke Pemesanan ↓</button>
+    <button id="clearCart" class="clear-cart">Kosongkan keranjang</button>
+  </div>
+</aside>
+
+<button class="floating-cart" id="floatingCart" aria-label="Buka keranjang">🛒 <span id="floatingCount">0</span></button>
+<div class="toast" id="toast" role="status"></div>
+<script src="script.js"></script>
+</body>
+</html>
