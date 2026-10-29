@@ -1413,7 +1413,7 @@ section[id] {
   }
 
 /* Tampilan HP dan tablet */
-  @media (max-width: 768px) {
+ @media (max-width: 768px) {
     .lokasi {
         padding: 50px 5%;
     }
