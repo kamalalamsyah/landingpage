@@ -1168,9 +1168,93 @@ section[id] {
 
 
 /* PERBAIKAN RESPONSIVE HP */
-@media (max-width: 768px) {
-    .nav-links { display: none; }
-    .bento-about { grid-template-columns: 1fr; }
-    .cart-drawer-playful { width: 100%; right: -100%; }
-    .footer-playful { grid-template-columns: 1fr; }
+
+/* PERBAIKAN HERO UNTUK LAYAR HP */
+@media screen and (max-width: 480px) {
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: clip;
+    }
+
+    .hero,
+    .hero-section {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        min-width: 0;
+        padding: 28px 20px 32px;
+        gap: 24px;
+        overflow: hidden;
+    }
+
+    .hero-content,
+    .hero-text {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .hero h1 {
+        font-size: clamp(30px, 9vw, 38px);
+        line-height: 1.08;
+        overflow-wrap: normal;
+        word-break: normal;
+    }
+
+    .hero p {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+    .hero-image,
+    .hero-visual,
+    .hero img {
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        height: auto;
+        margin: 0 auto;
+        object-fit: contain;
+    }
+
+    .hero-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .hero-buttons a,
+    .hero-buttons button {
+        width: 100%;
+        max-width: 100%;
+        min-height: 44px;
+        justify-content: center;
+    }
+
+    .hero-categories {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 20px;
+    }
+
+    .cart-float,
+    .floating-cart,
+    #floatingCart {
+        right: 14px;
+        bottom: 16px;
+        max-width: calc(100vw - 28px);
+    }
 }
+
