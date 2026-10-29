@@ -1297,3 +1297,48 @@ section[id] {
   }
 
   /* MENU: 2 kolom, gamb
+
+  
+.lokasi {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #fff8ef;
+}
+
+.lokasi h2 {
+    color: #6b351d;
+    margin-bottom: 10px;
+}
+
+.lokasi p {
+    color: #654c3c;
+    margin-bottom: 25px;
+}
+
+.map-container {
+    max-width: 1000px;
+    margin: auto;
+    overflow: hidden;
+    border-radius: 15px;
+    border: 2px solid #e8d2bd;
+}
+
+.map-container iframe {
+    display: block;
+    width: 100%;
+    border: 0;
+}
+
+.tombol-maps {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 22px;
+    background-color: #713d24;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+.tombol-maps:hover {
+    background-color: #4e2818;
+}
