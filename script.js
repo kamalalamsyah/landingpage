@@ -12,7 +12,7 @@ const products = [
   { id: "es-vanila", name: "Es Krim Roti Vanila Cokelat", category: "Es Krim", price: 15000, rating: "4.7", emoji: "🍦", image: "roties.jpg" },
   { id: "boba", name: "Es Krim Boba Pelangi", category: "Es Krim", price: 14000, rating: "4.5", emoji: "🍨", image: "esboba.jpg" },
   { id: "kerucut", name: "Es Krim Kerucut", category: "Es Krim", price: 12000, rating: "4.4", emoji: "🍦", image: "cone.jpg" },
-  { id: "original", name: "Roti Original", category: "Roti", price: 10000, rating: "4.6", emoji: "🍞", image: "rotiori.jpg" }
+  { id: "original", name: "Roti Original", category: "Roti", price: 10000, rating: "4.6", emoji: "🍞", image: "rotiori.png" }
 ];
 
 const presets = [
