@@ -1,350 +1,658 @@
 
-const rupiah = amount => new Intl.NumberFormat("id-ID", {
-  style: "currency", currency: "IDR", maximumFractionDigits: 0
-}).format(amount);
+/* =====================================
+   ROTI'O - SCRIPT WEBSITE
+   Tanpa fitur Bikin Paket Sendiri
+===================================== */
 
-const products = [
-  { id: "latte", name: "Latte Butterscotch", category: "Minuman", price: 18000, rating: "4.8", emoji: "☕", image: "latte.jpg" },
-  { id: "gula-merah", name: "Cokelat Gula Merah", category: "Minuman", price: 16000, rating: "4.7", emoji: "🥤", image: "gulamerah.jpg" },
-  { id: "teh-leci", name: "Teh Leci Es", category: "Minuman", price: 14000, rating: "4.6", emoji: "🧋", image: "leci.jpg" },
-  { id: "cromboo", name: "Crombo'O", category: "Pastry", price: 17000, rating: "4.8", emoji: "🥐", image: "crombo.jpg" },
-  { id: "martabak", name: "Croissant Martabak", category: "Pastry", price: 16000, rating: "4.7", emoji: "🥮", image: "martabak.jpg" },
-  { id: "kue-cokelat", name: "Kue Cokelat", category: "Pastry", price: 15000, rating: "4.6", emoji: "🍫", image: "kue.jpg" },
-  { id: "es-vanila", name: "Es Krim Roti Vanila Cokelat", category: "Es Krim", price: 15000, rating: "4.7", emoji: "🍦", image: "roties.jpg" },
-  { id: "boba", name: "Es Krim Boba Pelangi", category: "Es Krim", price: 14000, rating: "4.5", emoji: "🍨", image: "esboba.jpg" },
-  { id: "kerucut", name: "Es Krim Kerucut", category: "Es Krim", price: 12000, rating: "4.4", emoji: "🍦", image: "cone.jpg" },
-  { id: "original", name: "Roti Original", category: "Roti", price: 10000, rating: "4.6", emoji: "🍞", image: "ori.jpg" }
+// GANTI dengan nomor WhatsApp tujuan pemesanan.
+// Gunakan kode negara 62 tanpa tanda +.
+// Contoh format: 6281234567890
+const NOMOR_WA = "628xxxxxxxxxx";
+
+// FORMAT RUPIAH
+function formatRupiah(angka) {
+  return new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+    maximumFractionDigits: 0
+  }).format(angka);
+}
+
+// DATA MENU
+const daftarMenu = [
+  {
+    id: "roti-original",
+    nama: "Roti Original",
+    kategori: "Roti",
+    harga: 12000,
+    emoji: "🥐",
+    deskripsi: "Roti kopi dengan aroma khas."
+  },
+  {
+    id: "roti-cokelat",
+    nama: "Roti Cokelat",
+    kategori: "Roti",
+    harga: 14000,
+    emoji: "🍫",
+    deskripsi: "Roti dengan rasa cokelat."
+  },
+  {
+    id: "croissant",
+    nama: "Croissant",
+    kategori: "Pastry",
+    harga: 18000,
+    emoji: "🥐",
+    deskripsi: "Pastry renyah dan lembut."
+  },
+  {
+    id: "croissant-martabak",
+    nama: "Croissant Martabak",
+    kategori: "Pastry",
+    harga: 20000,
+    emoji: "🥮",
+    deskripsi: "Pastry dengan rasa martabak."
+  },
+  {
+    id: "latte",
+    nama: "Latte",
+    kategori: "Minuman",
+    harga: 18000,
+    emoji: "☕",
+    deskripsi: "Kopi susu dengan rasa lembut."
+  },
+  {
+    id: "americano",
+    nama: "Americano",
+    kategori: "Minuman",
+    harga: 15000,
+    emoji: "🧋",
+    deskripsi: "Kopi dengan cita rasa khas."
+  },
+  {
+    id: "butterscotch",
+    nama: "Latte Butterscotch",
+    kategori: "Minuman",
+    harga: 22000,
+    emoji: "🥤",
+    deskripsi: "Latte dengan rasa butterscotch."
+  },
+  {
+    id: "cokelat",
+    nama: "Cokelat",
+    kategori: "Minuman",
+    harga: 18000,
+    emoji: "🍫",
+    deskripsi: "Minuman cokelat yang nikmat."
+  },
+  {
+    id: "es-krim-vanila",
+    nama: "Es Krim Vanila",
+    kategori: "Es Krim",
+    harga: 12000,
+    emoji: "🍦",
+    deskripsi: "Es krim rasa vanila."
+  },
+  {
+    id: "es-krim-cokelat",
+    nama: "Es Krim Cokelat",
+    kategori: "Es Krim",
+    harga: 14000,
+    emoji: "🍨",
+    deskripsi: "Es krim dengan rasa cokelat."
+  }
 ];
 
-const presets = [
-  { id: "paket-1", name: "Paket Ngemil 1", desc: "Crombo'O + Teh Leci Es", items: { cromboo: 1, "teh-leci": 1 }, price: 26000, normal: 31000, emoji: "🥐" },
-  { id: "paket-2", name: "Paket Ngemil 2", desc: "Croissant Martabak + Latte Butterscotch", items: { martabak: 1, latte: 1 }, price: 31000, normal: 34000, emoji: "☕" },
-  { id: "paket-3", name: "Paket Manis 3", desc: "Es Krim Vanila Cokelat + Cokelat Gula Merah", items: { "es-vanila": 1, "gula-merah": 1 }, price: 27000, normal: 31000, emoji: "🍦" },
-  { id: "paket-4", name: "Paket Lengkap", desc: "Latte Butterscotch + Crombo'O + Es Krim Boba Pelangi", items: { latte: 1, cromboo: 1, boba: 1 }, price: 46000, normal: 49000, emoji: "🎁" }
+// DATA PAKET HEMAT
+const daftarPaket = [
+  {
+    id: "paket-1",
+    nama: "Paket Santai",
+    harga: 25000,
+    emoji: "☕",
+    deskripsi: "Roti Original + Latte",
+    isi: [
+      { nama: "Roti Original", jumlah: 1 },
+      { nama: "Latte", jumlah: 1 }
+    ]
+  },
+  {
+    id: "paket-2",
+    nama: "Paket Berdua",
+    harga: 42000,
+    emoji: "🥐",
+    deskripsi: "2 Roti Original + 2 Latte",
+    isi: [
+      { nama: "Roti Original", jumlah: 2 },
+      { nama: "Latte", jumlah: 2 }
+    ]
+  },
+  {
+    id: "paket-3",
+    nama: "Paket Komplit",
+    harga: 35000,
+    emoji: "🎁",
+    deskripsi: "Roti Original + Latte + Es Krim Vanila",
+    isi: [
+      { nama: "Roti Original", jumlah: 1 },
+      { nama: "Latte", jumlah: 1 },
+      { nama: "Es Krim Vanila", jumlah: 1 }
+    ]
+  }
 ];
 
-const cart = new Map();
-let activeCategory = "Semua";
-let customPackage = {};
+// KERANJANG
+let keranjang = [];
+
+// ELEMEN HTML
+const menuGrid = document.getElementById("menuGrid");
+const presetGrid = document.getElementById("presetGrid");
+const cartPanel = document.getElementById("cartPanel");
+const cartBackdrop = document.getElementById("cartBackdrop");
+const cartItems = document.getElementById("cartItems");
+const cartTotal = document.getElementById("cartTotal");
+const orderSummaryItems =
+  document.getElementById("orderSummaryItems");
+const orderTotal = document.getElementById("orderTotal");
+const toast = document.getElementById("toast");
+
+// NOTIFIKASI
 let toastTimer;
 
-const $ = id => document.getElementById(id);
-const productById = id => products.find(p => p.id === id);
-const totalItems = () => [...cart.values()].reduce((sum, item) => sum + item.qty, 0);
-const cartTotal = () => [...cart.values()].reduce((sum, item) => sum + item.price * item.qty, 0);
-
-function showToast(message) {
-  const toast = $("toast");
-  toast.textContent = message;
+function tampilkanToast(pesan) {
+  toast.textContent = pesan;
   toast.classList.add("show");
+
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove("show"), 2400);
+
+  toastTimer = setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2500);
 }
 
-function renderProducts() {
-  const filtered = activeCategory === "Semua"
-    ? products
-    : products.filter(p => p.category === activeCategory);
+// TAMPILKAN MENU
+function tampilkanMenu(kategori = "Semua") {
+  const menuTerpilih = daftarMenu.filter(menu => {
+    return kategori === "Semua" || menu.kategori === kategori;
+  });
 
-  $("menuGrid").innerHTML = filtered.map(p => `
-    <article class="menu-card">
-      <div class="menu-picture">
-        <img src="${p.image}" alt="${p.name}" loading="lazy"
-          onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-        <span class="menu-emoji" style="display:none">${p.emoji}</span>
-      </div>
-      <div class="menu-info">
-        <h3>${p.name}</h3>
-        <span class="category-label">${p.category}</span>
-        <div class="menu-price">${rupiah(p.price)}</div>
-        <div class="menu-bottom">
-          <span class="rating">★ <span style="color:#66594f">${p.rating}</span></span>
-          <button class="add-btn" data-add="${p.id}" aria-label="Tambah ${p.name}">+</button>
-        </div>
-      </div>
-    </article>
-  `).join("");
-}
+  menuGrid.innerHTML = "";
 
-function addItem(id, qty = 1, priceOverride = null, nameOverride = null) {
-  if (qty <= 0) return;
-  const product = productById(id);
-  const price = priceOverride ?? product?.price;
-  const name = nameOverride ?? product?.name;
-  if (price == null || !name) return;
-
-  if (cart.has(id)) {
-    cart.get(id).qty += qty;
-  } else {
-    cart.set(id, { id, name, price, qty });
-  }
-  renderCart();
-  showToast(`${name} ditambahkan ke keranjang.`);
-}
-
-function changeQty(id, delta) {
-  if (!cart.has(id)) return;
-  const item = cart.get(id);
-  item.qty += delta;
-  if (item.qty <= 0) cart.delete(id);
-  renderCart();
-}
-
-function renderCart() {
-  const entries = [...cart.values()];
-  const count = totalItems();
-  const total = cartTotal();
-
-  $("headerCount").textContent = count;
-  $("floatingCount").textContent = count;
-  $("cartTotal").textContent = rupiah(total);
-  $("orderTotal").textContent = rupiah(total);
-
-  if (!entries.length) {
-    $("cartItems").innerHTML = '<p class="empty-text">Keranjang masih kosong. Yuk, pilih menu favoritmu!</p>';
-    $("orderSummaryItems").innerHTML = '<p class="empty-text">Belum ada menu yang dipilih.</p>';
+  if (menuTerpilih.length === 0) {
+    menuGrid.innerHTML = `
+      <p class="empty-menu">Menu belum tersedia.</p>
+    `;
     return;
   }
 
-  $("cartItems").innerHTML = entries.map(item => `
-    <div class="cart-item">
-      <div>
-        <h4>${item.name}</h4>
-        <small>${rupiah(item.price)} / item</small>
-        <div class="cart-item-controls">
-          <button data-minus="${item.id}" aria-label="Kurangi ${item.name}">−</button>
-          <span>${item.qty}</span>
-          <button data-plus="${item.id}" aria-label="Tambah ${item.name}">+</button>
+  menuTerpilih.forEach(menu => {
+    const kartu = document.createElement("article");
+    kartu.className = "menu-card";
+
+    kartu.innerHTML = `
+      <div class="menu-image">
+        <span class="image-placeholder">${menu.emoji}</span>
+        <span class="menu-badge">${menu.kategori}</span>
+      </div>
+
+      <div class="menu-info">
+        <h3>${menu.nama}</h3>
+        <p>${menu.deskripsi}</p>
+
+        <div class="menu-card-bottom">
+          <span class="menu-price">
+            ${formatRupiah(menu.harga)}
+          </span>
+
+          <button
+            class="add-cart"
+            data-id="${menu.id}"
+            aria-label="Tambah ${menu.nama}"
+            title="Tambah ke keranjang"
+          >+</button>
         </div>
       </div>
-      <strong>${rupiah(item.price * item.qty)}</strong>
-    </div>
-  `).join("");
+    `;
 
-  $("orderSummaryItems").innerHTML = entries.map(item => `
-    <div class="summary-line">
-      <span>${item.name}<small>${item.qty} × ${rupiah(item.price)}</small></span>
-      <b>${rupiah(item.price * item.qty)}</b>
-    </div>
-  `).join("");
+    menuGrid.appendChild(kartu);
+  });
 }
 
-function openCart() {
-  $("cartPanel").classList.add("open");
-  $("cartBackdrop").classList.add("open");
-  $("cartPanel").setAttribute("aria-hidden", "false");
+// FILTER KATEGORI
+document.querySelectorAll(".category").forEach(tombol => {
+  tombol.addEventListener("click", () => {
+    document.querySelectorAll(".category").forEach(item => {
+      item.classList.remove("active");
+    });
+
+    tombol.classList.add("active");
+
+    tampilkanMenu(tombol.dataset.category);
+  });
+});
+
+// TAMPILKAN PAKET HEMAT
+function tampilkanPaket() {
+  presetGrid.innerHTML = "";
+
+  daftarPaket.forEach(paket => {
+    const kartu = document.createElement("article");
+    kartu.className = "preset-card";
+
+    kartu.innerHTML = `
+      <div class="preset-icon">${paket.emoji}</div>
+
+      <h3>${paket.nama}</h3>
+      <p>${paket.deskripsi}</p>
+
+      <div class="preset-price">
+        ${formatRupiah(paket.harga)}
+      </div>
+
+      <button
+        class="btn btn-primary"
+        data-paket="${paket.id}"
+      >
+        + Tambah Paket
+      </button>
+    `;
+
+    presetGrid.appendChild(kartu);
+  });
+}
+
+// TAMBAH MENU KE KERANJANG
+function tambahMenu(id) {
+  const menu = daftarMenu.find(item => item.id === id);
+
+  if (!menu) return;
+
+  const itemAda = keranjang.find(item => item.id === id);
+
+  if (itemAda) {
+    itemAda.jumlah++;
+  } else {
+    keranjang.push({
+      ...menu,
+      jumlah: 1,
+      tipe: "menu"
+    });
+  }
+
+  perbaruiKeranjang();
+  animasiKeranjang();
+  tampilkanToast(menu.nama + " ditambahkan ke keranjang!");
+}
+
+// TAMBAH PAKET KE KERANJANG
+function tambahPaket(id) {
+  const paket = daftarPaket.find(item => item.id === id);
+
+  if (!paket) return;
+
+  const itemAda = keranjang.find(item => item.id === id);
+
+  if (itemAda) {
+    itemAda.jumlah++;
+  } else {
+    keranjang.push({
+      ...paket,
+      kategori: "Paket Hemat",
+      tipe: "paket",
+      jumlah: 1
+    });
+  }
+
+  perbaruiKeranjang();
+  animasiKeranjang();
+  tampilkanToast(paket.nama + " ditambahkan ke keranjang!");
+}
+
+// EVENT TOMBOL MENU DAN PAKET
+document.addEventListener("click", event => {
+  const tombolMenu = event.target.closest(".add-cart");
+
+  if (tombolMenu) {
+    tambahMenu(tombolMenu.dataset.id);
+  }
+
+  const tombolPaket = event.target.closest("[data-paket]");
+
+  if (tombolPaket) {
+    tambahPaket(tombolPaket.dataset.paket);
+  }
+});
+
+// HITUNG TOTAL ITEM
+function hitungJumlahItem() {
+  return keranjang.reduce((total, item) => {
+    return total + item.jumlah;
+  }, 0);
+}
+
+// HITUNG TOTAL HARGA
+function hitungTotal() {
+  return keranjang.reduce((total, item) => {
+    return total + item.harga * item.jumlah;
+  }, 0);
+}
+
+// PERBARUI KERANJANG DAN RINGKASAN
+function perbaruiKeranjang() {
+  const jumlah = hitungJumlahItem();
+  const total = hitungTotal();
+
+  document.getElementById("headerCount").textContent = jumlah;
+  document.getElementById("floatingCount").textContent = jumlah;
+
+  cartTotal.textContent = formatRupiah(total);
+  orderTotal.textContent = formatRupiah(total);
+
+  tampilkanIsiKeranjang();
+  tampilkanRingkasan();
+}
+
+// ISI KERANJANG
+function tampilkanIsiKeranjang() {
+  cartItems.innerHTML = "";
+
+  if (keranjang.length === 0) {
+    cartItems.innerHTML = `
+      <p class="empty-text">
+        Keranjang masih kosong. Yuk, pilih menu favoritmu!
+      </p>
+    `;
+    return;
+  }
+
+  keranjang.forEach(item => {
+    const elemen = document.createElement("div");
+    elemen.className = "cart-item";
+
+    elemen.innerHTML = `
+      <div>
+        <h4>${item.emoji} ${item.nama}</h4>
+
+        <small>
+          ${formatRupiah(item.harga)} / item
+        </small>
+
+        <div class="quantity-control">
+          <button
+            data-aksi="kurang"
+            data-id="${item.id}"
+            aria-label="Kurangi jumlah ${item.nama}"
+          >−</button>
+
+          <span>${item.jumlah}</span>
+
+          <button
+            data-aksi="tambah"
+            data-id="${item.id}"
+            aria-label="Tambah jumlah ${item.nama}"
+          >+</button>
+        </div>
+      </div>
+
+      <div class="cart-item-price">
+        ${formatRupiah(item.harga * item.jumlah)}
+      </div>
+    `;
+
+    cartItems.appendChild(elemen);
+  });
+}
+
+// RINGKASAN PESANAN
+function tampilkanRingkasan() {
+  orderSummaryItems.innerHTML = "";
+
+  if (keranjang.length === 0) {
+    orderSummaryItems.innerHTML = `
+      <p class="empty-text">Belum ada menu yang dipilih.</p>
+    `;
+    return;
+  }
+
+  keranjang.forEach(item => {
+    const elemen = document.createElement("div");
+    elemen.className = "summary-item";
+
+    elemen.innerHTML = `
+      <div>
+        <b>${item.nama}</b>
+        <small>${item.jumlah} item × ${formatRupiah(item.harga)}</small>
+      </div>
+
+      <b>${formatRupiah(item.harga * item.jumlah)}</b>
+    `;
+
+    orderSummaryItems.appendChild(elemen);
+  });
+}
+
+// UBAH JUMLAH ITEM DI KERANJANG
+document.addEventListener("click", event => {
+  const tombol = event.target.closest("[data-aksi]");
+
+  if (!tombol) return;
+
+  const id = tombol.dataset.id;
+  const aksi = tombol.dataset.aksi;
+
+  const item = keranjang.find(item => item.id === id);
+
+  if (!item) return;
+
+  if (aksi === "tambah") {
+    item.jumlah++;
+  }
+
+  if (aksi === "kurang") {
+    item.jumlah--;
+
+    if (item.jumlah <= 0) {
+      keranjang = keranjang.filter(item => item.id !== id);
+    }
+  }
+
+  perbaruiKeranjang();
+});
+
+// ANIMASI TOMBOL KERANJANG
+function animasiKeranjang() {
+  const tombol = document.getElementById("floatingCart");
+
+  tombol.classList.remove("bump");
+
+  void tombol.offsetWidth;
+
+  tombol.classList.add("bump");
+}
+
+// BUKA KERANJANG
+function bukaKeranjang() {
+  cartPanel.classList.add("open");
+  cartBackdrop.classList.add("show");
+  cartPanel.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
-  $("closeCart").focus();
 }
 
-function closeCart() {
-  $("cartPanel").classList.remove("open");
-  $("cartBackdrop").classList.remove("open");
-  $("cartPanel").setAttribute("aria-hidden", "true");
+// TUTUP KERANJANG
+function tutupKeranjang() {
+  cartPanel.classList.remove("open");
+  cartBackdrop.classList.remove("show");
+  cartPanel.setAttribute("aria-hidden", "true");
   document.body.style.overflow = "";
 }
 
-function renderPackageChoices() {
-  $("packageChoices").innerHTML = products.map(p => `
-    <div class="package-choice">
-      <div><b>${p.name}</b><small>${rupiah(p.price)} / item</small></div>
-      <div class="quantity-controls">
-        <button data-package-minus="${p.id}" aria-label="Kurangi ${p.name}">−</button>
-        <span>${customPackage[p.id] || 0}</span>
-        <button data-package-plus="${p.id}" aria-label="Tambah ${p.name}">+</button>
-      </div>
-    </div>
-  `).join("");
-  updatePackageTotal();
-}
+document.getElementById("floatingCart")
+  .addEventListener("click", bukaKeranjang);
 
-function updatePackageTotal() {
-  const quantity = Object.values(customPackage).reduce((sum, n) => sum + n, 0);
-  const total = Object.entries(customPackage).reduce((sum, [id, qty]) => {
-    return sum + (productById(id)?.price || 0) * qty;
-  }, 0);
-  $("packageQuantity").textContent = `${quantity} item`;
-  $("packageTotal").textContent = rupiah(total);
-  $("addPackage").disabled = quantity === 0;
-  $("addPackage").style.opacity = quantity === 0 ? ".55" : "1";
-}
+document.getElementById("headerCart")
+  .addEventListener("click", bukaKeranjang);
 
-function renderPresets() {
-  $("presetGrid").innerHTML = presets.map(p => `
-    <article class="preset-card">
-      <div class="preset-emoji">${p.emoji}</div>
-      <h3>${p.name}</h3>
-      <p>${p.desc}</p>
-      <div class="preset-prices"><strong>${rupiah(p.price)}</strong><del>${rupiah(p.normal)}</del></div>
-      <button class="btn btn-primary" data-preset="${p.id}">Pilih Paket +</button>
-    </article>
-  `).join("");
-}
+document.getElementById("closeCart")
+  .addEventListener("click", tutupKeranjang);
 
-function addPreset(preset) {
-  const name = preset.name;
-  const packageId = `custom-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
-  addItem(packageId, 1, preset.price, name);
-  const item = cart.get(packageId);
-  item.description = preset.desc;
-}
+cartBackdrop.addEventListener("click", tutupKeranjang);
 
-$("categoryNav").addEventListener("click", event => {
-  const button = event.target.closest("[data-category]");
-  if (!button) return;
-  activeCategory = button.dataset.category;
-  document.querySelectorAll(".category").forEach(b => b.classList.toggle("active", b === button));
-  renderProducts();
-});
-
-$("menuGrid").addEventListener("click", event => {
-  const button = event.target.closest("[data-add]");
-  if (button) addItem(button.dataset.add);
-});
-
-$("packageChoices").addEventListener("click", event => {
-  const plus = event.target.closest("[data-package-plus]");
-  const minus = event.target.closest("[data-package-minus]");
-  if (plus) {
-    const id = plus.dataset.packagePlus;
-    customPackage[id] = (customPackage[id] || 0) + 1;
+// KOSONGKAN KERANJANG
+document.getElementById("clearCart").addEventListener("click", () => {
+  if (keranjang.length === 0) {
+    tampilkanToast("Keranjang sudah kosong.");
+    return;
   }
-  if (minus) {
-    const id = minus.dataset.packageMinus;
-    customPackage[id] = Math.max(0, (customPackage[id] || 0) - 1);
-    if (customPackage[id] === 0) delete customPackage[id];
-  }
-  renderPackageChoices();
+
+  keranjang = [];
+  perbaruiKeranjang();
+  tampilkanToast("Keranjang berhasil dikosongkan.");
 });
 
-$("addPackage").addEventListener("click", () => {
-  const entries = Object.entries(customPackage).filter(([, qty]) => qty > 0);
-  if (!entries.length) return showToast("Pilih minimal satu menu untuk paketmu.");
+// NAVIGASI KE PEMESANAN
+function menujuPemesanan() {
+  tutupKeranjang();
 
-  const total = entries.reduce((sum, [id, qty]) => sum + productById(id).price * qty, 0);
-  const description = entries.map(([id, qty]) => `${productById(id).name} ×${qty}`).join(", ");
-  const id = `racikan-${Date.now()}`;
-  addItem(id, 1, total, "Paket Racikan");
-  cart.get(id).description = description;
-  customPackage = {};
-  renderPackageChoices();
-});
+  document.getElementById("pemesanan").scrollIntoView({
+    behavior: "smooth"
+  });
+}
 
-$("presetGrid").addEventListener("click", event => {
-  const button = event.target.closest("[data-preset]");
-  if (!button) return;
-  const preset = presets.find(p => p.id === button.dataset.preset);
-  if (preset) addPreset(preset);
-});
+document.getElementById("goCheckout")
+  .addEventListener("click", menujuPemesanan);
 
-$("cartItems").addEventListener("click", event => {
-  const plus = event.target.closest("[data-plus]");
-  const minus = event.target.closest("[data-minus]");
-  if (plus) changeQty(plus.dataset.plus, 1);
-  if (minus) changeQty(minus.dataset.minus, -1);
-});
+document.getElementById("reviewCart")
+  .addEventListener("click", () => {
+    if (keranjang.length === 0) {
+      tampilkanToast("Pilih menu terlebih dahulu.");
+      bukaKeranjang();
+      return;
+    }
 
-["floatingCart", "headerCart", "reviewCart"].forEach(id => {
-  $(id).addEventListener("click", openCart);
-});
-$("closeCart").addEventListener("click", closeCart);
-$("cartBackdrop").addEventListener("click", closeCart);
-$("clearCart").addEventListener("click", () => {
-  cart.clear();
-  renderCart();
-  showToast("Keranjang sudah dikosongkan.");
-});
+    bukaKeranjang();
+  });
 
-$("goCheckout").addEventListener("click", () => {
-  closeCart();
-  $("pemesanan").scrollIntoView({ behavior: "smooth" });
-  if (!cart.size) showToast("Pilih menu terlebih dahulu.");
-  else $("customerName").focus({ preventScroll: true });
-});
+// PILIH METODE PESANAN
+const orderType = document.getElementById("orderType");
+const addressGroup = document.getElementById("addressGroup");
+const customerAddress = document.getElementById("customerAddress");
 
-$("menuToggle").addEventListener("click", () => {
-  const nav = $("navigation");
-  nav.classList.toggle("open");
-  $("menuToggle").setAttribute("aria-expanded", nav.classList.contains("open"));
-});
+orderType.addEventListener("change", () => {
+  const perluAlamat = orderType.value === "Antar ke alamat";
 
-$("navigation").addEventListener("click", event => {
-  if (event.target.closest("a")) {
-    $("navigation").classList.remove("open");
-    $("menuToggle").setAttribute("aria-expanded", "false");
+  addressGroup.classList.toggle("hidden", !perluAlamat);
+  customerAddress.required = perluAlamat;
+
+  if (!perluAlamat) {
+    customerAddress.value = "";
   }
 });
 
-$("orderType").addEventListener("change", event => {
-  const delivery = event.target.value === "Antar ke alamat";
-  $("addressGroup").classList.toggle("hidden", !delivery);
-  $("customerAddress").required = delivery;
-});
-
-$("orderForm").addEventListener("submit", event => {
+// FORM PEMESANAN WHATSAPP
+document.getElementById("orderForm").addEventListener("submit", event => {
   event.preventDefault();
 
-  if (!cart.size) {
-    showToast("Keranjang masih kosong. Pilih menu terlebih dahulu.");
-    openCart();
+  if (keranjang.length === 0) {
+    tampilkanToast("Keranjang masih kosong. Pilih menu dahulu.");
+    bukaKeranjang();
     return;
   }
 
-  const form = new FormData(event.currentTarget);
-  const name = String(form.get("customerName")).trim();
-  const phone = String(form.get("customerPhone")).trim();
-  const type = String(form.get("orderType"));
-  const time = String(form.get("pickupTime")).trim();
-  const address = String(form.get("customerAddress") || "").trim();
-  const notes = String(form.get("notes") || "").trim();
-
-  if (!name || !phone || !type || !time) {
-    showToast("Lengkapi semua kolom wajib.");
-    return;
-  }
-  if (type === "Antar ke alamat" && !address) {
-    showToast("Masukkan alamat pengantaran.");
-    $("customerAddress").focus();
+  if (NOMOR_WA.includes("x")) {
+    tampilkanToast("Atur nomor WhatsApp tujuan di script.js terlebih dahulu.");
     return;
   }
 
-  const lines = [...cart.values()].map(item =>
-    `- ${item.name} (${item.qty} x ${rupiah(item.price)}) = ${rupiah(item.qty * item.price)}`
-  );
+  const nama = document.getElementById("customerName").value.trim();
+  const telepon = document.getElementById("customerPhone").value.trim();
+  const metode = orderType.value;
+  const waktu = document.getElementById("pickupTime").value.trim();
+  const alamat = customerAddress.value.trim();
+  const catatan = document.getElementById("notes").value.trim();
 
-  const message = [
-    "*PESANAN ROTI'O*",
-    "",
-    `Nama: ${name}`,
-    `WhatsApp pelanggan: ${phone}`,
-    `Metode: ${type}`,
-    `Waktu: ${time}`,
-    ...(type === "Antar ke alamat" ? [`Alamat: ${address}`] : []),
-    "",
-    "*Detail menu:*",
-    ...lines,
-    "",
-    `*TOTAL: ${rupiah(cartTotal())}*`,
-    `Catatan: ${notes || "-"}`,
-    "",
-    "Mohon konfirmasi ketersediaan menu dan pesanan saya. Terima kasih."
-  ].join("\n");
-
-  // Ganti nomor di bawah dengan nomor WhatsApp bisnis dalam format internasional.
-  // Contoh Indonesia: 6281234567890 (tanpa tanda +, spasi, atau angka 0 di depan).
-  const whatsappNumber = "6281234567890";
-
-  if (whatsappNumber === "6281234567890") {
-    showToast("Ganti nomor WhatsApp bisnis di script.js sebelum menerima pesanan.");
+  if (!nama || !telepon || !metode || !waktu) {
+    tampilkanToast("Lengkapi data pemesanan terlebih dahulu.");
+    return;
   }
 
-  const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+  if (metode === "Antar ke alamat" && !alamat) {
+    tampilkanToast("Masukkan alamat pengantaran.");
+    customerAddress.focus();
+    return;
+  }
+
+  let pesan = `PESANAN ROTI'O\n\n`;
+  pesan += `Nama: ${nama}\n`;
+  pesan += `Nomor WhatsApp: ${telepon}\n`;
+  pesan += `Metode: ${metode}\n`;
+  pesan += `Waktu: ${waktu}\n`;
+
+  if (metode === "Antar ke alamat") {
+    pesan += `Alamat: ${alamat}\n`;
+  }
+
+  pesan += `\nDETAIL PESANAN:\n`;
+
+  keranjang.forEach((item, index) => {
+    pesan += `${index + 1}. ${item.nama}\n`;
+    pesan += `   Jumlah: ${item.jumlah}\n`;
+    pesan += `   Harga: ${formatRupiah(item.harga * item.jumlah)}\n`;
+
+    if (item.tipe === "paket" && item.isi) {
+      pesan += `   Isi paket:\n`;
+
+      item.isi.forEach(isi => {
+        pesan += `   - ${isi.nama} (${isi.jumlah} item)\n`;
+      });
+    }
+  });
+
+  pesan += `\nTOTAL: ${formatRupiah(hitungTotal())}\n`;
+
+  if (catatan) {
+    pesan += `\nCatatan: ${catatan}\n`;
+  }
+
+  pesan += `\nMohon konfirmasi ketersediaan dan total pesanan. Terima kasih!`;
+
+  const url =
+    `https://wa.me/${NOMOR_WA}?text=${encodeURIComponent(pesan)}`;
+
   window.open(url, "_blank", "noopener,noreferrer");
 });
 
-$("year").textContent = new Date().getFullYear();
+// MENU MOBILE
+const menuToggle = document.getElementById("menuToggle");
+const navigation = document.getElementById("navigation");
 
-renderProducts();
-renderPackageChoices();
-renderPresets();
-renderCart();
+menuToggle.addEventListener("click", () => {
+  const terbuka = navigation.classList.toggle("open");
+
+  menuToggle.setAttribute("aria-expanded", terbuka);
+  menuToggle.textContent = terbuka ? "✕" : "☰";
+});
+
+navigation.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    navigation.classList.remove("open");
+    menuToggle.textContent = "☰";
+    menuToggle.setAttribute("aria-expanded", "false");
+  });
+});
+
+// TUTUP KERANJANG DENGAN TOMBOL ESCAPE
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    tutupKeranjang();
+    navigation.classList.remove("open");
+    menuToggle.textContent = "☰";
+  }
+});
+
+// TAHUN FOOTER
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+// TAMPILKAN WEBSITE
+tampilkanMenu();
+tampilkanPaket();
+perbaruiKeranjang();
