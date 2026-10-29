@@ -3,16 +3,16 @@ const rupiah = amount => new Intl.NumberFormat("id-ID", {
 }).format(amount);
 
 const products = [
-  { id: "latte", name: "Latte Butterscotch", category: "Minuman", price: 18000, rating: "4.8", emoji: "☕", image: "foto/latte.jpg" },
-  { id: "gula-merah", name: "Cokelat Gula Merah", category: "Minuman", price: 16000, rating: "4.7", emoji: "🥤", image: "foto/gulamerah.jpg" },
-  { id: "teh-leci", name: "Teh Leci Es", category: "Minuman", price: 14000, rating: "4.6", emoji: "🧋", image: "foto/leci.jpg" },
-  { id: "cromboo", name: "Crombo'O", category: "Pastry", price: 17000, rating: "4.8", emoji: "🥐", image: "foto/crombo.jpg" },
-  { id: "martabak", name: "Croissant Martabak", category: "Pastry", price: 16000, rating: "4.7", emoji: "🥮", image: "foto/martabak.jpg" },
-  { id: "kue-cokelat", name: "Kue Cokelat", category: "Pastry", price: 15000, rating: "4.6", emoji: "🍫", image: "foto/kue.jpg" },
-  { id: "es-vanila", name: "Es Krim Roti Vanila Cokelat", category: "Es Krim", price: 15000, rating: "4.7", emoji: "🍦", image: "foto/roties.jpg" },
-  { id: "boba", name: "Es Krim Boba Pelangi", category: "Es Krim", price: 14000, rating: "4.5", emoji: "🍨", image: "foto/esboba.jpg" },
-  { id: "kerucut", name: "Es Krim Kerucut", category: "Es Krim", price: 12000, rating: "4.4", emoji: "🍦", image: "foto/cone.jpg" },
-  { id: "original", name: "Roti Original", category: "Roti", price: 10000, rating: "4.6", emoji: "🍞", image: "foto/ori.jpg" }
+  { id: "latte", name: "Latte Butterscotch", category: "Minuman", price: 18000, rating: "4.8", emoji: "☕", image: "latte.jpg" },
+  { id: "gula-merah", name: "Cokelat Gula Merah", category: "Minuman", price: 16000, rating: "4.7", emoji: "🥤", image: "gulamerah.jpg" },
+  { id: "teh-leci", name: "Teh Leci Es", category: "Minuman", price: 14000, rating: "4.6", emoji: "🧋", image: "leci.jpg" },
+  { id: "cromboo", name: "Crombo'O", category: "Pastry", price: 17000, rating: "4.8", emoji: "🥐", image: "crombo.jpg" },
+  { id: "martabak", name: "Croissant Martabak", category: "Pastry", price: 16000, rating: "4.7", emoji: "🥮", image: "martabak.jpg" },
+  { id: "kue-cokelat", name: "Kue Cokelat", category: "Pastry", price: 15000, rating: "4.6", emoji: "🍫", image: "kue.jpg" },
+  { id: "es-vanila", name: "Es Krim Roti Vanila Cokelat", category: "Es Krim", price: 15000, rating: "4.7", emoji: "🍦", image: "roties.jpg" },
+  { id: "boba", name: "Es Krim Boba Pelangi", category: "Es Krim", price: 14000, rating: "4.5", emoji: "🍨", image: "esboba.jpg" },
+  { id: "kerucut", name: "Es Krim Kerucut", category: "Es Krim", price: 12000, rating: "4.4", emoji: "🍦", image: "cone.jpg" },
+  { id: "original", name: "Roti Original", category: "Roti", price: 10000, rating: "4.6", emoji: "🍞", image: "ori.jpg" }
 ];
 
 const presets = [
