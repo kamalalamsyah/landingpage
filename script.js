@@ -331,9 +331,9 @@ $("orderForm").addEventListener("submit", event => {
 
   // Ganti nomor di bawah dengan nomor WhatsApp bisnis dalam format internasional.
   // Contoh Indonesia: 6281234567890 (tanpa tanda +, spasi, atau angka 0 di depan).
-  const whatsappNumber = "6281234567890";
+  const whatsappNumber = "6289504781293";
 
-  if (whatsappNumber === "6281234567890") {
+  if (whatsappNumber === "6289504781293") {
     showToast("Ganti nomor WhatsApp bisnis di script.js sebelum menerima pesanan.");
   }
 
