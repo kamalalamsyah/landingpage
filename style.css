@@ -1163,7 +1163,7 @@ section[id] {
    LAYAR BESAR
 ========================= */
 
-@media (min-width: 1400px) {
+@media (min-width: 768px) {
   .section,
   .order-section {
     padding-left: max(5%, calc((100% - 1350px)/2));
