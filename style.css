@@ -1168,7 +1168,7 @@ section[id] {
 
 
 /* PERBAIKAN RESPONSIVE HP */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
 
     html,
     body {
@@ -1233,7 +1233,7 @@ section[id] {
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 650px) {
     .package-section {
         padding: 22px 12px;
     }
