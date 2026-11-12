@@ -1254,139 +1254,190 @@ section[id] {
 }
 
 
+
 /* =========================
-   LOKASI TOKO
+   LOKASI TOKO ROTI'O
 ========================= */
 
-.store-location {
-    padding: 60px 5%;
-    background: #fffdf9;
+#lokasi.store-location {
+    padding: 70px 6%;
+    background: #fffaf3;
+    box-sizing: border-box;
 }
 
-.location-heading {
+#lokasi .location-heading {
     text-align: center;
-    margin-bottom: 35px;
+    max-width: 650px;
+    margin: 0 auto 35px;
 }
 
-.location-heading h2 {
-    color: #54230e;
-    font-size: 32px;
-    margin: 8px 0;
-}
-
-.location-heading p {
-    color: #896f60;
-    font-size: 13px;
-}
-
-.location-content {
-    display: grid;
-    grid-template-columns: 0.8fr 1.2fr;
-    gap: 25px;
-    max-width: 1100px;
-    margin: auto;
-}
-
-.location-info {
-    background: #fff6e9;
-    border: 1px solid #f0dfca;
-    border-radius: 18px;
-    padding: 30px;
-}
-
-.location-icon {
-    font-size: 35px;
-}
-
-.location-info h3 {
-    color: #54230e;
-    font-size: 22px;
-    margin: 12px 0;
-}
-
-.location-info > p {
-    color: #896f60;
-    font-size: 13px;
-    line-height: 1.8;
-}
-
-.location-detail {
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-    margin: 25px 0;
-}
-
-.location-detail > span {
-    font-size: 23px;
-}
-
-.location-detail b {
-    color: #54230e;
-    font-size: 13px;
-}
-
-.location-detail p {
-    color: #896f60;
+#lokasi .location-heading .eyebrow {
+    display: inline-block;
+    color: #b45b2a;
     font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+#lokasi .location-heading h2 {
+    color: #542b19;
+    font-size: 32px;
+    margin: 8px 0 12px;
+}
+
+#lokasi .location-heading p {
+    color: #806b5d;
+    font-size: 14px;
     line-height: 1.7;
 }
 
-.location-button {
+#lokasi .location-content {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 25px;
+    max-width: 1100px;
+    margin: auto;
+    align-items: stretch;
+}
+
+#lokasi .location-info {
+    background: #ffffff;
+    border: 1px solid #ead8c6;
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 8px 25px rgba(84, 43, 25, 0.07);
+    box-sizing: border-box;
+}
+
+#lokasi .location-icon {
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff0dc;
+    border-radius: 15px;
+    font-size: 27px;
+    margin-bottom: 18px;
+}
+
+#lokasi .location-info h3 {
+    color: #542b19;
+    font-size: 21px;
+    margin: 0 0 12px;
+}
+
+#lokasi .location-info > p {
+    color: #806b5d;
+    font-size: 14px;
+    line-height: 1.8;
+    margin: 0;
+}
+
+#lokasi .location-detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+    padding: 18px 0;
+    margin: 20px 0;
+    border-top: 1px solid #f0e5d9;
+    border-bottom: 1px solid #f0e5d9;
+}
+
+#lokasi .location-detail > span {
+    font-size: 23px;
+}
+
+#lokasi .location-detail b {
+    color: #542b19;
+    font-size: 14px;
+}
+
+#lokasi .location-detail p {
+    color: #806b5d;
+    font-size: 13px;
+    margin: 7px 0 0;
+    line-height: 1.6;
+}
+
+#lokasi .location-button {
     display: inline-block;
-    background: #783716;
+    background: #783b1d;
     color: white;
-    padding: 13px 18px;
-    border-radius: 10px;
-    font-size: 12px;
-    font-weight: 600;
     text-decoration: none;
+    padding: 13px 20px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
     transition: 0.3s;
 }
 
-.location-button:hover {
-    background: #54230e;
+#lokasi .location-button:hover {
+    background: #542b19;
     transform: translateY(-2px);
 }
 
-.location-map {
-    min-height: 330px;
+#lokasi .location-map {
+    min-height: 350px;
     border-radius: 18px;
     overflow: hidden;
-    border: 1px solid #f0dfca;
-    box-shadow: 0 8px 24px rgba(83, 40, 17, .09);
+    border: 1px solid #ead8c6;
+    box-shadow: 0 8px 25px rgba(84, 43, 25, 0.08);
 }
 
-.location-map iframe {
+#lokasi .location-map iframe {
     display: block;
     width: 100%;
     height: 100%;
-    min-height: 330px;
+    min-height: 350px;
     border: 0;
 }
 
-/* Tampilan HP dan tablet */
+/* Tampilan tablet dan HP */
 @media (max-width: 768px) {
-    .location-content {
+    #lokasi.store-location {
+        padding: 45px 5%;
+    }
+
+    #lokasi .location-heading {
+        margin-bottom: 25px;
+    }
+
+    #lokasi .location-heading h2 {
+        font-size: 25px;
+    }
+
+    #lokasi .location-content {
         grid-template-columns: 1fr;
+        gap: 18px;
     }
 
-    .location-heading h2 {
-        font-size: 26px;
+    #lokasi .location-info {
+        padding: 23px;
     }
 
-    .location-info {
-        padding: 22px;
+    #lokasi .location-map {
+        min-height: 270px;
     }
 
-    .location-map {
-        min-height: 280px;
-    }
-
-    .location-map iframe {
-        min-height: 280px;
+    #lokasi .location-map iframe {
+        min-height: 270px;
     }
 }
 
+@media (max-width: 400px) {
+    #lokasi .location-heading h2 {
+        font-size: 22px;
+    }
 
+    #lokasi .location-info {
+        padding: 18px;
+    }
 
+    #lokasi .location-button {
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+    }
+}
