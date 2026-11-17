@@ -1493,3 +1493,18 @@ img, iframe { max-width: 100%; }
   .brand b { font-size: 24px; }
   .cart-panel { width: 100%; }
 }
+
+@media screen and (max-width: 480px) {
+  .hero-visual {
+    justify-content: center;
+    align-items: center;
+    overflow: visible;      /* hilangkan kotak samar di belakang lingkaran */
+    padding: 10px 0 20px;
+  }
+
+  .hero-circle { margin: 0 auto; }
+
+  .food-one { left: 6%; bottom: 10px; }
+  .food-two { right: 6%; top: 10px; }
+  .hero-sticker { right: 6%; bottom: 10px; }
+}
