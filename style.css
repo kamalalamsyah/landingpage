@@ -1441,3 +1441,55 @@ section[id] {
         text-align: center;
     }
 }
+
+/* ===== RESPONSIVE ===== */
+html, body { overflow-x: hidden; }
+img, iframe { max-width: 100%; }
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .menu-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .preset-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .order-section { grid-template-columns: 1fr 1fr; }
+  .order-intro { grid-column: 1 / -1; }
+}
+
+/* Navigasi jadi tombol ☰ */
+@media (max-width: 900px) {
+  .header { flex-wrap: wrap; padding: 10px 5%; }
+  .menu-toggle { display: block; margin-left: auto; }
+  .navigation {
+    display: none;
+    order: 5;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding-top: 8px;
+  }
+  .navigation.open { display: flex; }
+  .navigation a {
+    width: 100%;
+    padding: 12px 4px;
+    font-size: 14px;
+    border-top: 1px solid #ffffff22;
+  }
+}
+
+/* HP */
+@media (max-width: 768px) {
+  .section { padding: 45px 5%; }
+  .section-heading { flex-direction: column; align-items: flex-start; }
+  .menu-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .package-choices { grid-template-columns: 1fr; }
+  .review-grid { grid-template-columns: 1fr; }
+  .order-section { grid-template-columns: 1fr; padding: 40px 5%; }
+  .order-summary { position: static; }
+  .footer-main, .footer-bottom { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 480px) {
+  .preset-grid { grid-template-columns: 1fr; }
+  .brand b { font-size: 24px; }
+  .cart-panel { width: 100%; }
+}
