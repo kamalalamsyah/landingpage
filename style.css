@@ -1508,3 +1508,22 @@ img, iframe { max-width: 100%; }
   .food-two { right: 6%; top: 10px; }
   .hero-sticker { right: 6%; bottom: 10px; }
 }
+
+@media screen and (max-width: 480px) {
+  .hero-visual {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    overflow: visible !important;
+    padding: 10px 0 24px !important;
+  }
+
+  .hero-circle {
+    margin: 0 auto !important;
+    box-shadow: 0 10px 22px #78371630 !important;
+  }
+
+  .food-one   { left: 6% !important;  bottom: 14px !important; }
+  .food-two   { right: 6% !important; top: 14px !important; }
+  .hero-sticker { right: 6% !important; bottom: 14px !important; }
+}
